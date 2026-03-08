@@ -138,3 +138,45 @@ function actualizarMarcadores(puntosAdicionales) {
         barra.style.width = porcentaje + "%";
     }
 }
+
+// Este código genera la fila de objetos interactivos para el Escenario 0
+const htmlInventario = `
+<div id="inventario-objetos" style="
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    margin-top: 25px; 
+    padding: 15px; 
+    background: #f8f9fa; 
+    border-radius: 25px; 
+    border: 2px dashed #d1d5db;">
+    
+    <div class="obj-item" onclick="seleccionarObjeto('portatil')" style="cursor:pointer; text-align:center;">
+        <img src="assets/portatil.png" style="width: 55px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));" alt="Portátil">
+        <p style="font-size: 9px; font-weight: bold; margin-top: 5px;">PORTÁTIL</p>
+    </div>
+
+    <div class="obj-item" onclick="seleccionarObjeto('reloj')" style="cursor:pointer; text-align:center;">
+        <img src="assets/reloj.png" style="width: 55px;" alt="Reloj">
+        <p style="font-size: 9px; font-weight: bold; margin-top: 5px;">RELOJ</p>
+    </div>
+
+    <div class="obj-item" onclick="seleccionarObjeto('pelicula')" style="cursor:pointer; text-align:center;">
+        <img src="assets/pelicula.png" style="width: 55px;" alt="Película">
+        <p style="font-size: 9px; font-weight: bold; margin-top: 5px;">PELÍCULA</p>
+    </div>
+
+    <div class="obj-item" onclick="seleccionarObjeto('tablet')" style="cursor:pointer; text-align:center;">
+        <img src="assets/tablet.png" style="width: 55px;" alt="Tablet">
+        <p style="font-size: 9px; font-weight: bold; margin-top: 5px;">TABLET</p>
+    </div>
+
+    <div class="obj-item" onclick="seleccionarObjeto('control')" style="cursor:pointer; text-align:center;">
+        <img src="assets/control.png" style="width: 55px;" alt="Control">
+        <p style="font-size: 9px; font-weight: bold; margin-top: 5px;">CONTROL</p>
+    </div>
+</div>
+`;
+
+// Insertamos el inventario justo antes del área de texto
+document.querySelector('.burbuja-tutor').insertAdjacentHTML('afterend', htmlInventario);
