@@ -255,6 +255,36 @@ function abrirNivel(id) {
         galeria.style.display = 'none';
     }
 
+
+let ordenEstante = []; // Aquí guardaremos el orden lógico
+
+function moverAlEstante(nombre) {
+    // Evitamos que pongan el mismo objeto dos veces
+    if (ordenEstante.includes(nombre) || ordenEstante.length >= 5) return;
+
+    ordenEstante.push(nombre);
+    
+    // Calculamos el nivel visual: el 1ro va al 5 (arriba), el 2do al 4...
+    let nivelVisual = 5 - (ordenEstante.length - 1);
+    let slot = document.getElementById(`slot-${nivelVisual}`);
+
+    if (slot) {
+        // Colocamos la imagen físicamente en el estante
+        slot.innerHTML = `<img src="assets/${nombre}.png" alt="${nombre}">`;
+        
+        // Actualizamos el campo de texto invisible para la validación final
+        document.getElementById('user-respuesta').value = ordenEstante.join(", ");
+    }
+}
+
+// Función vital para que el niño pueda corregir sin frustración
+function reiniciarEstante() {
+    ordenEstante = [];
+    document.getElementById('user-respuesta').value = "";
+    for (let i = 1; i <= 5; i++) {
+        document.getElementById(`slot-${i}`).innerHTML = "";
+    }
+}
     document.getElementById('modal-oscurecer').style.display = 'block';
     document.getElementById('ventana-reto').style.display = 'block';
 }
