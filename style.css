@@ -189,7 +189,7 @@ body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin: 0; background
 /* Coordenadas corregidas y afinadas para tu mapa */
 
 /* 0. La Casa (Hogar) - Un poco más a la izquierda y abajo */
-.pin-0 { top: 2.5%; left: 15.5%; }  
+.pin-0 { top: 44.2%; left: 50%; }  
 
 /* 1. El Supermercado - Justo sobre la entrada */
 .pin-1 { top: 23%; left: 41%; } 
