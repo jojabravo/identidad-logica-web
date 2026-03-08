@@ -7,11 +7,11 @@ const niveles = [
         titulo: "CAPÍTULO 0: EL HOGAR", 
         tutores: "Sacha y Mateo",
         mensaje: "Antes de salir, el joven debe organizar su estante personal de 5 niveles. Pistas del Jefe de Hogar:\n\n" +
-                 "• El Portátil debe ir en el nivel más alto por seguridad.\n" +
-                 "• El Reloj debe estar justo debajo del portátil para verlo rápido.\n" +
-                 "• El Control de videojuego va en el primer nivel (el más bajo).\n" +
                  "• La Tablet va un nivel arriba del control.\n" +
-                 "• La Película queda en el espacio vacío (Nivel 3).",
+                 "• El Reloj debe estar justo debajo del portátil para verlo rápido.\n" +
+                 "• El Portátil debe ir en el nivel más alto por seguridad.\n" +
+                 "• El Control de videojuego va en el primer nivel (el más bajo).\n" +
+                 "• La Película queda en el espacio vacio.",
         pista: "Recuerda: El portátil es el nivel 5 y el control el nivel 1.",
         clave: ["portatil", "reloj", "pelicula", "tablet", "control"], // Orden de arriba (5) a abajo (1)
         imagen: "assets/Escenario0.png" 
