@@ -192,10 +192,10 @@ body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin: 0; background
 .pin-0 { top: 5%; left: 10%; }  
 
 /* 1. El Supermercado - Justo sobre la entrada */
-.pin-1 { top: 25%; left: 45%; } 
+.pin-1 { top: 25%; left: 40%; } 
 
 /* 2. El Edificio - Bien a la derecha, sobre el tejado */
-.pin-2 { top: 48%; left: 89%; } 
+.pin-2 { top: 44%; left: 89%; } 
 
 /* 3. La Panadería - En la esquina inferior izquierda */
 .pin-3 { top: 82%; left: 12%; } 
