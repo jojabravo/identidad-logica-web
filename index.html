@@ -3,151 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Identidad Lógica | IE Josefa Campos</title>
+    <title>Identidad Lógica | Proyecto Doctoral</title>
     <style>
-        /* Paleta de colores inspirada en la IE Josefa Campos y Flat Design */
         :root {
-            --verde-institucional: #2e7d32;
-            --azul-claro: #e3f2fd;
-            --azul-botones: #1976d2;
-            --dorado-moneda: #fbc02d;
+            --verde-principal: #2e7d32;
+            --azul-fondo: #e3f2fd;
             --blanco: #ffffff;
-            --gris-suave: #f5f5f5;
+            --dorado: #fbc02d;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--azul-claro);
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--azul-fondo);
             margin: 0;
-            padding: 0;
-            color: #333;
-        }
-
-        /* Encabezado Profesional */
-        header {
-            background-color: var(--verde-institucional);
-            color: var(--blanco);
-            padding: 2rem 1rem;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* Cabecera */
+        header {
+            background-color: var(--verde-principal);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        header p {
-            margin: 5px 0 0;
-            font-weight: 300;
-            opacity: 0.9;
-        }
-
-        /* Marcador de Monedas Estilizado */
-        #contador-monedas {
-            display: inline-block;
-            background: var(--blanco);
-            color: var(--verde-institucional);
+        #marcador {
+            background: white;
+            color: var(--verde-principal);
             padding: 10px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 1.3rem;
-            margin-top: 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        /* Contenedor del Mapa */
-        #mapa-container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: var(--blanco);
-            padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            position: relative;
+            display: inline-block;
+            font-weight: bold;
+            margin-top: 10px;
         }
 
-        #mapa-container h2 {
-            color: var(--azul-botones);
-            margin-bottom: 25px;
+        /* Contenedor Principal */
+        #pantalla-juego {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            min-height: 400px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* Botones Interactivos del Mapa */
-        .botones-grid {
+        /* Estilo de los Botones del Mapa */
+        .grid-niveles {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .boton-nivel {
+            padding: 30px;
+            background: #f8f9fa;
+            border: 2px solid var(--verde-principal);
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .boton-nivel:hover {
+            transform: scale(1.05);
+            background: var(--verde-principal);
+            color: white;
+        }
+
+        /* Área de Chat con la IA */
+        #zona-interaccion {
+            display: none; /* Se activa al elegir nivel */
             margin-top: 20px;
         }
 
-        .boton-mapa {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background-color: var(--gris-suave);
-            color: var(--azul-botones);
-            text-decoration: none;
-            border-radius: 15px;
-            font-weight: bold;
-            border: 2px solid var(--azul-botones);
-            transition: all 0.3s ease;
+        #chat-ia {
+            background: #eee;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            text-align: left;
         }
 
-        .boton-mapa:hover {
-            background-color: var(--azul-botones);
-            color: var(--blanco);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(25, 118, 210, 0.3);
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
 
-        /* Pie de página con créditos académicos */
+        button#enviar {
+            padding: 10px 20px;
+            background: var(--verde-principal);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Pie de página */
         footer {
-            margin-top: 50px;
-            padding: 20px;
             background: #333;
-            color: #ccc;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .creditos-universidades {
-            font-style: italic;
-            color: var(--blanco);
+            color: white;
+            padding: 20px;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Identidad Lógica</h1>
-    <p>El Poder de ser Yo</p>
-    <div id="contador-monedas">💰 <span id="puntos">0</span> Monedas</div>
+    <h1>Identidad Lógica: El Poder de ser Yo</h1>
+    <p>Investigación Doctoral - Jorge A. Jaramillo Bravo</p>
+    <div id="marcador">💰 Monedas: <span id="puntos">0</span></div>
 </header>
 
-<main id="mapa-container">
-    <h2>Mapa de Desafíos</h2>
-    <p>Haz clic en un escenario para comenzar tu aventura lúdica.</p>
-    
-    <div class="botones-grid">
-        <a href="#" class="boton-mapa" id="nivel-0">🏠 0. La Casa</a>
-        <a href="#" class="boton-mapa" id="nivel-1">🛒 1. Supermercado</a>
-        <a href="#" class="boton-mapa" id="nivel-2">🏢 2. El Edificio</a>
-        <a href="#" class="boton-mapa" id="nivel-3">🥖 3. La Panadería</a>
-        <a href="#" class="boton-mapa" id="nivel-4">👕 4. Tienda de Moda</a>
+<main id="pantalla-juego">
+    <div id="menu-principal">
+        <h2>Mapa del Barrio</h2>
+        <p>Selecciona un lugar para comenzar el desafío:</p>
+        <div class="grid-niveles">
+            <div class="boton-nivel" onclick="cargarNivel(0)">🏠 0. La Casa</div>
+            <div class="boton-nivel" onclick="cargarNivel(1)">🛒 1. Supermercado</div>
+            <div class="boton-nivel" onclick="cargarNivel(2)">🏢 2. El Edificio</div>
+            <div class="boton-nivel" onclick="cargarNivel(3)">🥖 3. La Panadería</div>
+            <div class="boton-nivel" onclick="cargarNivel(4)">👕 4. Tienda de Moda</div>
+        </div>
+    </div>
+
+    <div id="zona-interaccion">
+        <h2 id="titulo-escenario"></h2>
+        <div id="chat-ia">
+            <strong>Amani:</strong> <span id="mensaje-ia">¡Hola! ¿Estás listo para este reto?</span>
+        </div>
+        <input type="text" id="respuesta-usuario" placeholder="Escribe tu respuesta aquí...">
+        <button id="enviar" onclick="enviarRespuesta()">Enviar</button>
+        <br><br>
+        <button onclick="volverMenu()">⬅ Volver al Mapa</button>
     </div>
 </main>
 
 <footer>
-    <p><strong>Autor:</strong> Jorge Armando Jaramillo Bravo</p>
-    <p class="creditos-universidades">
-        Lic. Matemáticas y Física (UdeA) | Magister en Enseñanza (UNAL) | Doctorando en Educación (UTEL)
-    </p>
-    <p>Colaboradores: Didier Garcia, Didier Durango | Institución Educativa Josefa Campos, Bello</p>
-    <p>© 2026 - LABORATORIO INTERACTIVO JOSEFA CAMPOS</p>
+    <p><strong>Créditos Académicos:</strong></p>
+    <p>Lic. Matemáticas y Física (UdeA) | Magister (UNAL) | Doctorando (UTEL)</p>
+    <p>Colaboradores: Didier Durango y Carmelo Hernández | IE Josefa Campos</p>
 </footer>
+
+<script>
+    let monedas = 0;
+
+    function cargarNivel(id) {
+        document.getElementById('menu-principal').style.display = 'none';
+        document.getElementById('zona-interaccion').style.display = 'block';
+        
+        const titulos = [
+            "Escenario 0: Orden en Casa",
+            "Escenario 1: El Supermercado",
+            "Escenario 2: El Edificio",
+            "Escenario 3: La Panadería",
+            "Escenario 4: Tienda de Moda (Matricial)"
+        ];
+        
+        document.getElementById('titulo-escenario').innerText = titulos[id];
+        document.getElementById('mensaje-ia').innerText = "Has llegado al lugar. ¿Puedes resolver el acertijo lógico?";
+    }
+
+    function volverMenu() {
+        document.getElementById('menu-principal').style.display = 'block';
+        document.getElementById('zona-interaccion').style.display = 'none';
+    }
+
+    function enviarRespuesta() {
+        // Aquí conectaremos la API de Gemini próximamente
+        alert("Respuesta enviada. ¡Pronto conectaremos el cerebro de IA para evaluarte!");
+        document.getElementById('respuesta-usuario').value = "";
+    }
+</script>
 
 </body>
 </html>
