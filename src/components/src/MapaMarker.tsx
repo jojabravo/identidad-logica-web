@@ -1,32 +1,34 @@
 // src/components/MapaMarker.tsx
 import React from 'react';
 
-interface Props {
+interface MapaMarkerProps {
   numero: number;
   label: string;
+  top: string;
+  left: string;
   onClick: () => void;
-  top: string; // Posición % desde arriba
-  left: string; // Posición % desde la izquierda
 }
 
-const MapaMarker: React.FC<Props> = ({ numero, label, onClick, top, left }) => {
+const MapaMarker: React.FC<MapaMarkerProps> = ({ numero, label, top, left, onClick }) => {
   return (
     <div 
-      className="absolute cursor-pointer transform -translate-x-1/2 -translate-y-1/2 group"
-      style={{ top, left }}
+      className="absolute z-10 cursor-pointer group"
+      style={{ top, left, transform: 'translate(-50%, -50%)' }}
       onClick={onClick}
     >
-      {/* Círculo Animado Exterior (Efecto "Pulso de Vida") */}
-      <div className="absolute inset-0 bg-purple-400 rounded-full scale-110 opacity-60 animate-ping group-hover:scale-150 transition-all duration-300"></div>
-
-      {/* Círculo Principal con Degradado y Número */}
-      <div className="relative flex flex-col items-center justify-center w-12 h-12 rounded-full border-4 border-white shadow-xl bg-gradient-to-b from-purple-600 to-indigo-700 hover:scale-110 transition-transform active:scale-95">
-        <span className="text-2xl font-bold text-white font-mono leading-none">{numero}</span>
-        
-        {/* Etiqueta flotante (Ej: "HOME") */}
-        <span className="absolute -bottom-6 text-[9px] font-bold text-purple-700 bg-white/90 px-3 py-1 rounded-full border border-purple-100 uppercase shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+      {/* 1. Efecto de Pulso (La "Vida" del icono) */}
+      <div className="absolute inset-0 bg-purple-400 rounded-full animate-ping opacity-75 scale-125"></div>
+      
+      {/* 2. Círculo Principal con el Número */}
+      <div className="relative w-10 h-10 bg-gradient-to-tr from-purple-600 to-pink-500 rounded-full border-2 border-white flex items-center justify-center shadow-lg transition-transform group-hover:scale-110 active:scale-95">
+        <span className="text-white font-bold text-lg leading-none">{numero}</span>
+      </div>
+      
+      {/* 3. Etiqueta flotante con el nombre del lugar */}
+      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none border border-purple-100">
+        <span className="text-[9px] font-bold text-purple-700 whitespace-nowrap uppercase tracking-tighter">
           {label}
-        </div>
+        </span>
       </div>
     </div>
   );
