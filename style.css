@@ -202,3 +202,37 @@ body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin: 0; background
 
 /* 4. La Tienda de Moda (Boutique) - En el centro-derecha */
 .pin-4 { top: 39.1%; left: 57.6%; }
+
+
+/* Slots del estante: donde aterrizarán los objetos */
+.drop-zone {
+    border: 2px dashed rgba(156, 39, 176, 0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+/* Efecto cuando un objeto entra al slot */
+.drop-zone img {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+    animation: bounceIn 0.5s ease;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.obj-click {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.obj-click:hover {
+    transform: scale(1.1) rotate(5deg);
+}
