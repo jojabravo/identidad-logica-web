@@ -51,16 +51,33 @@ function login() {
 
 // Función para abrir los retos desde el mapa
 function abrirNivel(id) {
-    const nivel = niveles[id];
-    console.log("Cargando: " + nivel.titulo);
+    const nivel = niveles[id]; // Usamos la base de datos de 8 personajes
     
-    // Por ahora usamos un alert, pero ya está listo para conectar con tu ventana modal
-    alert(nivel.titulo + "\n" + nivel.mensaje);
+    // Llenar la ventana con la información
+    document.getElementById('modal-titulo').innerText = nivel.t;
+    document.getElementById('modal-personajes').innerText = "TUTORES: " + nivel.p;
+    document.getElementById('modal-mensaje').innerText = nivel.m;
+    document.getElementById('modal-img').src = nivel.imagen;
     
-    // Ejemplo de cómo ganarías puntos al resolverlo (Simulación)
-    // actualizarMarcadores(50); 
+    // Mostrar la ventana
+    document.getElementById('modal-oscurecer').style.display = 'block';
+    document.getElementById('ventana-reto').style.display = 'block';
 }
 
+function cerrarReto() {
+    document.getElementById('modal-oscurecer').style.display = 'none';
+    document.getElementById('ventana-reto').style.display = 'none';
+}
+
+function validarRespuesta() {
+    const resp = document.getElementById('user-respuesta').value;
+    if(resp.trim() !== "") {
+        // Aquí conectaremos la API de Gemini
+        alert("¡Recibido! El Profe Jorge y la IA están evaluando tu lógica...");
+        ganarPuntos(20); // Sumamos monedas y progreso visual
+        cerrarReto();
+    }
+}
 // Función para actualizar monedas y barra de progreso
 function actualizarMarcadores(puntos) {
     monedas += puntos;
