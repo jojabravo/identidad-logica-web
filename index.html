@@ -60,20 +60,38 @@
         <button class="btn-nav btn-salir" onclick="cerrarReto()">X</button>
     </div>
     <div class="modal-cuerpo">
-        <div class="escenario-visual">
-            <img id="modal-img" src="" alt="Escenario">
-        </div>
-        <div class="chat-contenedor">
-            <div class="burbuja-tutor">
-                <strong id="modal-personajes">Personajes</strong>
-                <p id="modal-mensaje">Instrucciones del reto...</p>
-            </div>
-            <div class="input-grupo">
-                <input type="text" id="user-respuesta" placeholder="Escribe tu lógica aquí...">
-                <button class="btn-primario" onclick="validarRespuesta()">ENVIAR →</button>
-            </div>
+    <div class="escenario-visual" style="position: relative;">
+        <img id="modal-img" src="assets/Escenario0.png" alt="Escenario">
+        
+        <div id="estante-puntos" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
+            <div id="slot-5" class="drop-zone" style="position: absolute; top: 12%; left: 45%; width: 60px; height: 60px;"></div>
+            <div id="slot-4" class="drop-zone" style="position: absolute; top: 28%; left: 45%; width: 60px; height: 60px;"></div>
+            <div id="slot-3" class="drop-zone" style="position: absolute; top: 45%; left: 45%; width: 60px; height: 60px;"></div>
+            <div id="slot-2" class="drop-zone" style="position: absolute; top: 62%; left: 45%; width: 60px; height: 60px;"></div>
+            <div id="slot-1" class="drop-zone" style="position: absolute; top: 78%; left: 45%; width: 60px; height: 60px;"></div>
         </div>
     </div>
+
+    <div id="galeria-objetos" class="objetos-galeria" style="display: none; justify-content: center; gap: 10px; padding: 10px; background: #f3e5f5; border-radius: 20px;">
+        <img src="assets/portatil.png" class="obj-click" onclick="moverAlEstante('portatil')" width="50">
+        <img src="assets/reloj.png" class="obj-click" onclick="moverAlEstante('reloj')" width="50">
+        <img src="assets/pelicula.png" class="obj-click" onclick="moverAlEstante('pelicula')" width="50">
+        <img src="assets/tablet.png" class="obj-click" onclick="moverAlEstante('tablet')" width="50">
+        <img src="assets/control.png" class="obj-click" onclick="moverAlEstante('control')" width="50">
+    </div>
+
+    <div class="chat-contenedor">
+        <div class="burbuja-tutor">
+            <strong id="modal-personajes">Personajes</strong>
+            <p id="modal-mensaje">Instrucciones del reto...</p>
+        </div>
+        <div class="input-grupo">
+            <input type="text" id="user-respuesta" placeholder="Orden: 1, 2, 3..." readonly>
+            <button class="btn-primario" onclick="validarRespuesta()">VALIDAR ORDEN →</button>
+            <button class="btn-nav btn-salir" onclick="reiniciarReto0()" style="background:#eee; color:#333;">🔄</button>
+        </div>
+    </div>
+</div>
 </div>
         
         <footer class="creditos-finales">
