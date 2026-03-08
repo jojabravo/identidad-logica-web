@@ -1,5 +1,5 @@
 // ==========================================
-// BASE DE DATOS DE RETOS (Sincronizada con Guion)
+// BASE DE DATOS DE RETOS
 // ==========================================
 const niveles = [
     { 
@@ -11,86 +11,53 @@ const niveles = [
         clave: ["portatil", "reloj", "pelicula", "tablet", "control"],
         imagen: "assets/Escenario0.png" 
     },
-    { 
-        id: 1, 
-        titulo: "CAPÍTULO 1: SUPERMERCADO", 
-        tutores: "Sacha y Mateo",
-        mensaje: "¡Bienvenidos al Súper! Debemos organizar los productos de izquierda a derecha: el Café está a la izquierda del Pan y la Leche a la derecha del Pan. ¡Atrapa las gotas!",
-        pista: "El Café es el primero de la izquierda.",
-        clave: ["cafe", "pan", "leche", "huevos"],
-        imagen: "assets/Escenario1.png" 
-    },
-    { 
-        id: 2, 
-        titulo: "CAPÍTULO 2: EL EDIFICIO", 
-        tutores: "Sacha y Mateo",
-        mensaje: "Ayúdanos a ubicar a los vecinos: Dora vive en el piso más alto (5) y Beto dos pisos más abajo. ¿Cuál es el orden?",
-        pista: "Dora está en el 5, cuenta dos hacia abajo para Beto.",
-        clave: ["dora", "ana", "beto", "elena", "carlos"],
-        imagen: "assets/Escenario2.3.png" 
-    },
-    { 
-        id: 3, 
-        titulo: "CAPÍTULO 3: LA PANADERÍA", 
-        tutores: "Elena y Kenji",
-        mensaje: "¡Uyyy, qué susto! Primero espanta los 10 ratones. Luego sienta a Juan frente a Rosa y a Luis a la derecha de Juan.",
-        pista: "Piensa en círculo y usa la rotación mental.",
-        clave: ["juan", "sofia", "pedro", "rosa", "andres", "luis"],
-        imagen: "assets/Escenario3.png" 
-    },
-    { 
-        id: 4, 
-        titulo: "CAPÍTULO 4: TIENDA DE MODA", 
-        tutores: "Lucía y Thiago",
-        mensaje: "Reto final de lógica matricial. Daniela no pidió el Jean y Carla pidió la Blusa. ¡Usa la tabla!",
-        pista: "Si Carla tiene la blusa, Daniela debe tener la camisa.",
-        clave: ["carla", "daniela", "eliana"],
-        imagen: "assets/Escenario4.png" 
-    }
+    { id: 1, titulo: "CAPÍTULO 1: SUPERMERCADO", tutores: "Sacha y Mateo", mensaje: "¡Bienvenidos al Súper! Ordena de izquierda a derecha...", clave: ["cafe", "pan", "leche", "huevos"], imagen: "assets/Escenario1.png" },
+    { id: 2, titulo: "CAPÍTULO 2: EL EDIFICIO", tutores: "Sacha y Mateo", mensaje: "Ubica a los vecinos...", clave: ["dora", "ana", "beto", "elena", "carlos"], imagen: "assets/Escenario2.3.png" }
 ];
 
-// ==========================================
-// VARIABLES DE ESTADO
-// ==========================================
 let monedas = 0;
 let nivelesCompletados = 0;
 let nivelActualId = null;
+let seleccionEstudiante = []; // VARIABLE ÚNICA PARA EL ORDEN
 
 // ==========================================
-// FUNCIONES DE NAVEGACIÓN E INTERFAZ
+// FUNCIONES DE INTERFAZ
 // ==========================================
 
-// Iniciar Sesión
 function login() {
     const nombre = document.getElementById('user-name').value;
     if (nombre.trim() !== "") {
         document.getElementById('display-name').innerText = nombre.toUpperCase();
         document.getElementById('pantalla-login').style.display = 'none';
         document.getElementById('interfaz-juego').style.display = 'block';
-        console.log("Sesión iniciada para: " + nombre);
     } else {
-        alert("Por favor, ingresa tu nombre completo para el Laboratorio.");
+        alert("Ingresa tu nombre completo.");
     }
 }
 
-// Abrir el Reto (Solucionando el error de "undefined")
 function abrirNivel(id) {
     nivelActualId = id;
     const nivel = niveles.find(n => n.id === id);
+    if (!nivel) return;
+
+    document.getElementById('modal-titulo').innerText = nivel.titulo;
+    document.getElementById('modal-personajes').innerText = "TUTORES: " + nivel.tutores;
+    document.getElementById('modal-mensaje').innerText = nivel.mensaje;
+    document.getElementById('modal-img').src = nivel.imagen;
     
-    if (nivel) {
-        document.getElementById('modal-titulo').innerText = nivel.titulo;
-        document.getElementById('modal-personajes').innerText = "TUTORES: " + nivel.tutores;
-        document.getElementById('modal-mensaje').innerText = nivel.mensaje;
-        document.getElementById('modal-img').src = nivel.imagen;
-        
-        // Limpiar el campo de respuesta previo
-        document.getElementById('user-respuesta').value = "";
-        
-        // Mostrar Modal
-        document.getElementById('modal-oscurecer').style.display = 'block';
-        document.getElementById('ventana-reto').style.display = 'block';
+    // Resetear reto y UI
+    reiniciarReto();
+    
+    // Mostrar u ocultar inventario según el nivel
+    const galeria = document.getElementById('galeria-objetos');
+    if(id === 0) {
+        galeria.style.display = 'flex';
+    } else {
+        galeria.style.display = 'none';
     }
+
+    document.getElementById('modal-oscurecer').style.display = 'block';
+    document.getElementById('ventana-reto').style.display = 'block';
 }
 
 function cerrarReto() {
@@ -99,200 +66,62 @@ function cerrarReto() {
 }
 
 // ==========================================
-// MOTOR LÓGICO Y EVALUACIÓN
+// LÓGICA DEL RETO 0 (EL HOGAR)
 // ==========================================
 
-function validarRespuesta() {
-    // 1. Definimos el orden correcto exacto de arriba (Nivel 5) hacia abajo (Nivel 1)
-    const claveCorrecta = ["portatil", "reloj", "pelicula", "tablet", "control"];
+function moverAlEstante(nombreObjeto) {
+    // Si ya está puesto o ya hay 5, no hacer nada
+    if (seleccionEstudiante.includes(nombreObjeto) || seleccionEstudiante.length >= 5) return;
+
+    seleccionEstudiante.push(nombreObjeto);
     
-    // 2. Verificamos si el estudiante completó los 5 espacios
-    if (ordenEstante.length < 5) {
-        alert("¡Aún faltan objetos en el estante! Sacha y Mateo necesitan que ubiques los 5.");
+    // Nivel 5 es el primero (arriba), Nivel 1 el último (abajo)
+    const nivelVisual = 5 - (seleccionEstudiante.length - 1);
+    const slot = document.getElementById(`slot-${nivelVisual}`);
+    
+    if (slot) {
+        slot.innerHTML = `<img src="assets/${nombreObjeto}.png" style="width:100%; height:100%; object-fit:contain;">`;
+    }
+    
+    // Actualizar el input de texto (opcional, para ver el progreso)
+    document.getElementById('user-respuesta').value = seleccionEstudiante.join(", ");
+}
+
+function reiniciarReto() {
+    seleccionEstudiante = [];
+    document.getElementById('user-respuesta').value = "";
+    // Limpiar los slots del 1 al 5
+    for(let i=1; i<=5; i++) {
+        const slot = document.getElementById(`slot-${i}`);
+        if(slot) slot.innerHTML = "";
+    }
+}
+
+function validarRespuesta() {
+    const nivel = niveles.find(n => n.id === nivelActualId);
+    
+    if (seleccionEstudiante.length < nivel.clave.length) {
+        alert("¡Amani dice: Aún faltan objetos por organizar!");
         return;
     }
 
-    // 3. Comparamos el orden del estudiante con la clave
-    let esCorrecto = true;
-    for (let i = 0; i < claveCorrecta.length; i++) {
-        if (ordenEstante[i] !== claveCorrecta[i]) {
-            esCorrecto = false;
-            break;
-        }
-    }
+    // Comparar orden exacto
+    const esCorrecto = nivel.clave.every((val, index) => val === seleccionEstudiante[index]);
 
     if (esCorrecto) {
-        // MENSAJE DE TRIUNFO (Alineado con el guion)
         alert("¡Increíble! ¡Todo está en su lugar! Lo que se vive, se enseña.");
-        actualizarMarcadores(50); // Sumamos monedas por acierto lógico
+        actualizarMarcadores(50);
         cerrarReto();
     } else {
-        // ANDAMIAJE PEDAGÓGICO (Feedback formativo si falla)
-        alert("Mmm, algo no cuadra en el orden. Mateo dice: 'Recuerda que el portátil es lo más alto por seguridad'. ¡Inténtalo de nuevo!");
-        reiniciarEstante(); // Limpiamos para que reflexione y lo intente otra vez
+        alert("Mmm, algo no cuadra. Pista: " + nivel.pista);
+        reiniciarReto(); // Feedback formativo: reintentar
     }
 }
-function actualizarMarcadores(puntosAdicionales) {
-    monedas += puntosAdicionales;
+
+function actualizarMarcadores(puntos) {
+    monedas += puntos;
     nivelesCompletados += 1;
-    
-    // Actualizar UI de monedas
     document.getElementById('puntos-actuales').innerText = monedas;
-    
-    // Actualizar Barra de Progreso
     const porcentaje = (nivelesCompletados / 5) * 100;
-    const barra = document.getElementById('progreso-visual');
-    if (barra) {
-        barra.style.width = porcentaje + "%";
-    }
-}
-
-// Este código genera la fila de objetos interactivos para el Escenario 0
-const htmlInventario = `
-<div id="inventario-objetos" style="
-    display: flex; 
-    justify-content: space-around; 
-    align-items: center; 
-    margin-top: 25px; 
-    padding: 15px; 
-    background: #f8f9fa; 
-    border-radius: 25px; 
-    border: 2px dashed #d1d5db;">
-    
-    <div class="obj-item" onclick="seleccionarObjeto('portatil')" style="cursor:pointer; text-align:center;">
-        <img src="assets/portatil.png" style="width: 55px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));" alt="Portátil">
-        <p style="font-size: 9px; font-weight: bold; margin-top: 5px;">PORTÁTIL</p>
-    </div>
-
-    <div class="obj-item" onclick="seleccionarObjeto('reloj')" style="cursor:pointer; text-align:center;">
-        <img src="assets/reloj.png" style="width: 55px;" alt="Reloj">
-        <p style="font-size: 9px; font-weight: bold; margin-top: 5px;">RELOJ</p>
-    </div>
-
-    <div class="obj-item" onclick="seleccionarObjeto('pelicula')" style="cursor:pointer; text-align:center;">
-        <img src="assets/pelicula.png" style="width: 55px;" alt="Película">
-        <p style="font-size: 9px; font-weight: bold; margin-top: 5px;">PELÍCULA</p>
-    </div>
-
-    <div class="obj-item" onclick="seleccionarObjeto('tablet')" style="cursor:pointer; text-align:center;">
-        <img src="assets/tablet.png" style="width: 55px;" alt="Tablet">
-        <p style="font-size: 9px; font-weight: bold; margin-top: 5px;">TABLET</p>
-    </div>
-
-    <div class="obj-item" onclick="seleccionarObjeto('control')" style="cursor:pointer; text-align:center;">
-        <img src="assets/control.png" style="width: 55px;" alt="Control">
-        <p style="font-size: 9px; font-weight: bold; margin-top: 5px;">CONTROL</p>
-    </div>
-</div>
-`;
-
-// Insertamos el inventario justo antes del área de texto
-document.querySelector('.burbuja-tutor').insertAdjacentHTML('afterend', htmlInventario);
-
-// Array para guardar el orden en que el estudiante toca los objetos
-let seleccionEstudiante = [];
-
-function seleccionarObjeto(nombreObjeto) {
-    if (seleccionEstudiante.length < 5 && !seleccionEstudiante.includes(nombreObjeto)) {
-        seleccionEstudiante.push(nombreObjeto);
-        
-        // Buscamos el nivel visual (del 5 al 1)
-        const nivelVisual = 5 - (seleccionEstudiante.length - 1);
-        
-        // Actualizamos el estante visualmente (necesitas IDs en tus estantes)
-        const estanteNivel = document.getElementById(`nivel-${nivelVisual}`);
-        if (estanteNivel) {
-            estanteNivel.innerHTML = `<img src="assets/${nombreObjeto}.png" style="height: 40px; animate: bounce;">`;
-        }
-        
-        console.log("Orden actual: " + seleccionEstudiante.join(", "));
-    }
-}
-
-// Función para limpiar si se equivocan
-function reiniciarEstante() {
-    seleccionEstudiante = [];
-    for(let i=1; i<=5; i++) {
-        document.getElementById(`nivel-${i}`).innerHTML = "";
-    }
-}
-
-let ordenActual = [];
-
-function moverAlEstante(nombre) {
-    if (ordenActual.length < 5 && !ordenActual.includes(nombre)) {
-        ordenActual.push(nombre);
-        
-        // El primero que toca va al nivel 5 (arriba), el segundo al 4...
-        let nivel = 5 - (ordenActual.length - 1);
-        let slot = document.getElementById(`slot-${nivel}`);
-        
-        if (slot) {
-            slot.innerHTML = `<img src="assets/${nombre}.png" style="width:100%; height:100%; object-fit:contain; animation: aparecer 0.3s ease;">`;
-            slot.style.pointerEvents = "auto";
-        }
-        
-        // Escribir automáticamente en el input para que Gemini lo vea
-        document.getElementById('user-respuesta').value = ordenActual.join(", ");
-    }
-}
-
-function reiniciarReto0() {
-    ordenActual = [];
-    document.getElementById('user-respuesta').value = "";
-    for(let i=1; i<=5; i++) {
-        document.getElementById(`slot-${i}`).innerHTML = "";
-    }
-}
-
-// Modifica tu abrirNivel para mostrar la galería solo en el nivel 0
-function abrirNivel(id) {
-    const nivel = niveles[id];
-    nivelActualId = id;
-    
-    document.getElementById('modal-titulo').innerText = nivel.titulo;
-    document.getElementById('modal-mensaje').innerText = nivel.mensaje;
-    document.getElementById('modal-img').src = nivel.imagen;
-    
-    // Si es el hogar, mostrar los objetos
-    const galeria = document.getElementById('galeria-objetos');
-    if(id === 0) {
-        galeria.style.display = 'flex';
-        reiniciarReto0();
-    } else {
-        galeria.style.display = 'none';
-    }
-
-
-let ordenEstante = []; // Aquí guardaremos el orden lógico
-
-function moverAlEstante(nombre) {
-    // Evitamos que pongan el mismo objeto dos veces
-    if (ordenEstante.includes(nombre) || ordenEstante.length >= 5) return;
-
-    ordenEstante.push(nombre);
-    
-    // Calculamos el nivel visual: el 1ro va al 5 (arriba), el 2do al 4...
-    let nivelVisual = 5 - (ordenEstante.length - 1);
-    let slot = document.getElementById(`slot-${nivelVisual}`);
-
-    if (slot) {
-        // Colocamos la imagen físicamente en el estante
-        slot.innerHTML = `<img src="assets/${nombre}.png" alt="${nombre}">`;
-        
-        // Actualizamos el campo de texto invisible para la validación final
-        document.getElementById('user-respuesta').value = ordenEstante.join(", ");
-    }
-}
-
-// Función vital para que el niño pueda corregir sin frustración
-function reiniciarEstante() {
-    ordenEstante = [];
-    document.getElementById('user-respuesta').value = "";
-    for (let i = 1; i <= 5; i++) {
-        document.getElementById(`slot-${i}`).innerHTML = "";
-    }
-}
-    document.getElementById('modal-oscurecer').style.display = 'block';
-    document.getElementById('ventana-reto').style.display = 'block';
+    document.getElementById('progreso-visual').style.width = porcentaje + "%";
 }
