@@ -1,16 +1,26 @@
 // ==========================================
 // BASE DE DATOS DE RETOS
 // ==========================================
+// ==========================================
+// BASE DE DATOS DE RETOS (ACTUALIZADO ESCENARIO 0)
+// ==========================================
 const niveles = [
     { 
         id: 0, 
         titulo: "CAPÍTULO 0: EL HOGAR", 
         tutores: "Sacha y Mateo",
-        mensaje: "¡Hola! Somos Sacha y Mateo. Antes de salir al barrio, necesitamos poner orden en casa. El portátil va en lo más alto y el control en el nivel más bajo. ¿Cuál es el orden de arriba hacia abajo?",
-        pista: "Recuerda: El portátil es lo más alto por seguridad.",
+        mensaje: "Antes de salir, debes organizar tu estante personal de 5 niveles. Pistas del Jefe de Hogar:\n\n" +
+                 "• El Portátil debe ir en el nivel más alto por seguridad.\n" +
+                 "• El Reloj debe estar justo debajo del portátil para verlo rápido.\n" +
+                 "• El Control de videojuego va en el primer nivel (el más bajo).\n" +
+                 "• La Tablet va un nivel arriba del control.\n" +
+                 "• La Película queda en el espacio vacío (Nivel 3).",
+        pista: "Recuerda: El portátil es el nivel 5 y el control el nivel 1.",
         clave: ["portatil", "reloj", "pelicula", "tablet", "control"],
         imagen: "assets/Escenario0.png" 
     },
+    // ... los demás niveles se mantienen igual
+];
     { id: 1, titulo: "CAPÍTULO 1: SUPERMERCADO", tutores: "Sacha y Mateo", mensaje: "¡Bienvenidos al Súper! Ordena de izquierda a derecha...", clave: ["cafe", "pan", "leche", "huevos"], imagen: "assets/Escenario1.png" },
     { id: 2, titulo: "CAPÍTULO 2: EL EDIFICIO", tutores: "Sacha y Mateo", mensaje: "Ubica a los vecinos...", clave: ["dora", "ana", "beto", "elena", "carlos"], imagen: "assets/Escenario2.3.png" }
 ];
