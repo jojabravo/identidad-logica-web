@@ -1,90 +1,60 @@
-<style>
-    /* Estilo de la Barra de Progreso imitando image_ba6a48.png */
-    .contenedor-progreso {
-        background-color: #f1f3f4;
-        border-radius: 20px;
-        height: 12px;
-        width: 150px;
-        margin: 0 15px;
-        position: relative;
-        overflow: hidden;
-        border: 1px solid #e0e0e0;
-    }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identidad Lógica | Laboratorio Josefa Campos</title>
+    <link rel="stylesheet" href="style.css"> </head>
+<body>
 
-    .barra-relleno {
-        background: linear-gradient(90deg, #9c27b0, #e1bee7);
-        height: 100%;
-        width: 0%; /* Se actualiza con JS */
-        transition: width 0.5s ease;
-        border-radius: 20px;
-    }
+    <div id="pantalla-login">
+        <div class="caja-login">
+            <h2>Identidad Lógica</h2>
+            <p>Laboratorio Interactivo Josefa Campos</p>
+            <input type="text" id="user-name" placeholder="Escribe tu nombre completo...">
+            <button onclick="login()">INGRESAR AL JUEGO →</button>
+        </div>
+    </div>
 
-    .monedas-display {
-        background-color: #fff9c4;
-        color: #f57f17;
-        padding: 5px 12px;
-        border-radius: 15px;
-        font-weight: bold;
-        font-size: 13px;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        border: 1px solid #fbc02d;
-    }
-</style>
-
-<nav class="navbar">
-    <div class="perfil-nav">
-        <div class="casa-icon">🏠</div>
-        <div>
-            <div style="font-weight: bold; color: var(--purpura); font-size: 14px;">Identidad Lógica</div>
-            <div style="font-size: 10px; color: #9aa0a6; text-transform: uppercase;">
-                Estudiante: <span id="display-name"></span>
+    <div id="interfaz-juego" style="display: none;">
+        <nav class="navbar">
+            <div class="perfil-nav">
+                <div class="casa-icon">🏠</div>
+                <div class="user-info">
+                    <span class="game-title">Identidad Lógica</span>
+                    <span class="student-name">ESTUDIANTE: <span id="display-name"></span></span>
+                </div>
             </div>
+
+            <div class="gamificacion">
+                <span class="label-progreso">PROGRESO:</span>
+                <div class="contenedor-progreso">
+                    <div id="progreso-visual" class="barra-relleno"></div>
+                </div>
+                <div class="monedas-display">💰 <span id="puntos-actuales">0</span></div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn-nav btn-buzon">✉ BUZÓN</button>
+                <button onclick="location.reload()" class="btn-nav btn-salir">SALIR</button>
+            </div>
+        </nav>
+
+        <div class="mapa-interactivo">
+            <img src="calle-barrio.jpg" class="img-mapa-bg">
+            <div class="punto-nivel" id="lvl0" onclick="abrirNivel(0)">0</div>
+            <div class="punto-nivel" id="lvl1" onclick="abrirNivel(1)">1</div>
+            <div class="punto-nivel" id="lvl2" onclick="abrirNivel(2)">2</div>
+            <div class="punto-nivel" id="lvl3" onclick="abrirNivel(3)">3</div>
+            <div class="punto-nivel" id="lvl4" onclick="abrirNivel(4)">4</div>
         </div>
+
+        <footer>
+            <div class="autor">Jorge Armando Jaramillo Bravo</div>
+            <div class="titulos">⚛️ UdeA | ♉ UNAL | 🎓 UTEL</div>
+            <div class="copy-lab">© 2026 - LABORATORIO INTERACTIVO JOSEFA CAMPOS</div>
+        </footer>
     </div>
 
-    <div style="display: flex; align-items: center;">
-        <div style="font-size: 10px; font-weight: bold; color: var(--purpura);">PROGRESO:</div>
-        <div class="contenedor-progreso">
-            <div id="progreso-visual" class="barra-relleno"></div>
-        </div>
-        <div class="monedas-display">
-            💰 <span id="puntos-actuales">0</span>
-        </div>
-    </div>
-
-    <div class="nav-buttons">
-        <button class="btn-nav btn-buzon">✉ BUZÓN</button>
-        <button onclick="location.reload()" class="btn-nav btn-salir">SALIR</button>
-    </div>
-</nav>
-
-<script>
-    let monedasTotales = 0;
-    let nivelesCompletados = 0;
-
-    function login() {
-        const n = document.getElementById('user-name').value;
-        if(n.trim() !== "") {
-            document.getElementById('display-name').innerText = n;
-            document.getElementById('pantalla-login').style.display = 'none';
-            document.getElementById('interfaz-juego').style.display = 'block';
-        }
-    }
-
-    // Función para actualizar monedas y progreso visual
-    function ganarPremio(puntos) {
-        monedasTotales += puntos;
-        nivelesCompletados += 1;
-        
-        // Actualiza el texto de monedas
-        document.getElementById('puntos-actuales').innerText = monedasTotales;
-        
-        // Actualiza la barra (5 niveles = 100%)
-        const porcentaje = (nivelesCompletados / 5) * 100;
-        document.getElementById('progreso-visual').style.width = porcentaje + "%";
-        
-        alert("¡Felicidades! Ganaste " + puntos + " monedas virtuales para el Laboratorio Josefa Campos.");
-    }
-</script>
+    <script src="script.js"></script> </body>
+</html>
