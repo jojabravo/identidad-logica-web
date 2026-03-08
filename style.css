@@ -189,10 +189,10 @@ body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin: 0; background
 /* Coordenadas corregidas y afinadas para tu mapa */
 
 /* 0. La Casa (Hogar) - Un poco más a la izquierda y abajo */
-.pin-0 { top: 4%; left: 17%; }  
+.pin-0 { top: 3%; left: 16%; }  
 
 /* 1. El Supermercado - Justo sobre la entrada */
-.pin-1 { top: 25%; left: 40%; } 
+.pin-1 { top: 23%; left: 41%; } 
 
 /* 2. El Edificio - Bien a la derecha, sobre el tejado */
 .pin-2 { top: 42%; left: 89%; } 
@@ -201,4 +201,4 @@ body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin: 0; background
 .pin-3 { top: 77%; left: 13%; } 
 
 /* 4. La Tienda de Moda (Boutique) - En el centro-derecha */
-.pin-4 { top: 44%; left: 58%; }
+.pin-4 { top: 44,2%; left: 58,5%; }
