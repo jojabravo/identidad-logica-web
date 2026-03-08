@@ -1,0 +1,37 @@
+:root {
+    --purpura: #9c27b0;
+    --purpura-suave: #f3e5f5;
+    --blanco: #ffffff;
+    --gris-oscuro: #5f6368;
+}
+
+body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f8f9fa; }
+
+/* Navbar y Perfil */
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 30px; background: white; border-bottom: 1px solid #eee; }
+.user-info { display: flex; flex-direction: column; }
+.game-title { font-weight: bold; color: var(--purpura); }
+.student-name { font-size: 10px; color: #9aa0a6; }
+
+/* Barra de Progreso y Monedas */
+.gamificacion { display: flex; align-items: center; gap: 10px; }
+.contenedor-progreso { width: 120px; height: 10px; background: #eee; border-radius: 10px; overflow: hidden; border: 1px solid #ddd; }
+.barra-relleno { height: 100%; width: 0%; background: var(--purpura); transition: 0.5s; }
+.monedas-display { background: #fff9c4; padding: 5px 15px; border-radius: 20px; font-weight: bold; border: 1px solid #fbc02d; color: #f57f17; }
+
+/* Mapa */
+.mapa-interactivo { position: relative; max-width: 900px; margin: 20px auto; border: 5px solid white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.img-mapa-bg { width: 100%; display: block; }
+.punto-nivel { position: absolute; width: 35px; height: 35px; background: var(--purpura); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; border: 3px solid white; }
+
+/* Login */
+#pantalla-login { height: 100vh; display: flex; justify-content: center; align-items: center; background: var(--purpura-suave); }
+.caja-login { background: white; padding: 40px; border-radius: 25px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px; border: 1px solid #ddd; }
+button { background: var(--purpura); color: white; border: none; padding: 12px 25px; border-radius: 10px; cursor: pointer; font-weight: bold; }
+
+/* Footer */
+footer { text-align: center; padding: 30px; background: white; border-top: 1px solid #eee; }
+.autor { color: var(--purpura); font-weight: bold; font-size: 1.2rem; }
+.titulos { font-size: 0.8rem; color: var(--gris-oscuro); margin-top: 5px; }
+.copy-lab { font-weight: bold; color: #81c784; font-size: 0.7rem; margin-top: 15px; }
