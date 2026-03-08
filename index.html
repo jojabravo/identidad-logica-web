@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Identidad Lógica | Laboratorio Josefa Campos</title>
-    <link rel="stylesheet" href="style.css"> </head>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
     <div id="pantalla-login">
         <div class="caja-login">
             <h2>Identidad Lógica</h2>
-            <p>Laboratorio Interactivo Josefa Campos</p>
             <input type="text" id="user-name" placeholder="Escribe tu nombre completo...">
             <button onclick="login()">INGRESAR AL JUEGO →</button>
         </div>
@@ -40,21 +40,25 @@
             </div>
         </nav>
 
-        <div class="mapa-interactivo">
-    <img src="calle-barrio.jpg" class="img-mapa-bg">
-    <div class="punto-nivel" id="lvl0" onclick="abrirNivel(0)">0</div>
-    <div class="punto-nivel" id="lvl1" onclick="abrirNivel(1)">1</div>
-    <div class="punto-nivel" id="lvl2" onclick="abrirNivel(2)">2</div>
-    <div class="punto-nivel" id="lvl3" onclick="abrirNivel(3)">3</div>
-    <div class="punto-nivel" id="lvl4" onclick="abrirNivel(4)">4</div>
-    </div>
+        <div class="mapa-container">
+            <img src="calle-barrio.jpg" class="img-mapa" alt="Barrio Josefa Campos">
+            <div class="punto-nivel" id="lvl0" onclick="abrirNivel(0)">0</div>
+            <div class="punto-nivel" id="lvl1" onclick="abrirNivel(1)">1</div>
+            <div class="punto-nivel" id="lvl2" onclick="abrirNivel(2)">2</div>
+            <div class="punto-nivel" id="lvl3" onclick="abrirNivel(3)">3</div>
+            <div class="punto-nivel" id="lvl4" onclick="abrirNivel(4)">4</div>
+        </div>
 
         <footer>
             <div class="autor">Jorge Armando Jaramillo Bravo</div>
-            <div class="titulos">⚛️ Lic. Matemáticas y Física (UdeA) | ♉ Mag. Enseñanza de las Ciencias Exactas y Naturales (UNAL) | 🎓 Doctorante en Educación (UTEL)</div>
+            <div class="titulos">
+                ⚛️ Licenciado en matemáticas y física (UdeA) | ♉ Magister (UNAL) | 🎓 Doctorante en Educación (UTEL)
+            </div>
+            <div class="colaboradores">Colaboradores: Didier Garcia y Didier Durango | IE Josefa Campos</div>
             <div class="copy-lab">© 2026 - LABORATORIO INTERACTIVO JOSEFA CAMPOS</div>
         </footer>
     </div>
 
-    <script src="script.js"></script> </body>
+    <script src="script.js"></script>
+</body>
 </html>
