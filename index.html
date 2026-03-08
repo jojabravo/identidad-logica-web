@@ -1,257 +1,113 @@
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Lógica 6º/7º | Josefa Campos</title>
-
     <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
 
-
-
     <div id="pantalla-login">
-
         <div class="caja-login">
-
             <div class="logo-login">🏠</div>
-
             <h2>Identidad Lógica</h2>
-
             <p>Laboratorio Interactivo Josefa Campos</p>
-
             <input type="text" id="user-name" class="input-moderno" placeholder="Escribe tu nombre completo...">
-
             <button class="btn-primario" onclick="login()">INGRESAR AL JUEGO →</button>
-
         </div>
-
     </div>
-
-
 
     <div id="interfaz-juego" style="display: none;">
-
         <nav class="navbar">
-
             <div class="perfil-nav">
-
                 <div class="casa-icon">🏠</div>
-
                 <div class="user-info">
-
                     <span class="game-title">Lógica 6º/7º</span>
-
                     <span class="student-name">ESTUDIANTE: <span id="display-name"></span></span>
-
                 </div>
-
             </div>
-
-
 
             <div class="gamificacion">
-
                 <span class="label-progreso">PROGRESO:</span>
-
                 <div class="contenedor-progreso">
-
                     <div id="progreso-visual" class="barra-relleno"></div>
-
                 </div>
-
                 <div class="monedas-display">💰 <span id="puntos-actuales">0</span></div>
-
             </div>
-
-
 
             <div class="nav-buttons">
-
                 <button class="btn-nav btn-buzon">✉ BUZÓN</button>
-
                 <button class="btn-nav btn-notas">📝 MIS NOTAS</button>
-
                 <button onclick="location.reload()" class="btn-nav btn-salir">SALIR</button>
-
             </div>
-
         </nav>
 
-
-
         <div class="contenedor-mapa">
-
-    <img src="assets/calle-barrio.png" class="img-mapa" alt="Mapa del Barrio">
-
-
-
-    <div class="punto-nivel pin-0" onclick="abrirNivel(0)">0</div>
-
-    <div class="punto-nivel pin-1" onclick="abrirNivel(1)">1</div>
-
-    <div class="punto-nivel pin-2" onclick="abrirNivel(2)">2</div>
-
-    <div class="punto-nivel pin-3" onclick="abrirNivel(3)">3</div>
-
-    <div class="punto-nivel pin-4" onclick="abrirNivel(4)">4</div>
-
-</div>
-
-
+            <img src="assets/calle-barrio.png" class="img-mapa" alt="Mapa del Barrio">
+            <div class="punto-nivel pin-0" onclick="abrirNivel(0)">0</div>
+            <div class="punto-nivel pin-1" onclick="abrirNivel(1)">1</div>
+            <div class="punto-nivel pin-2" onclick="abrirNivel(2)">2</div>
+            <div class="punto-nivel pin-3" onclick="abrirNivel(3)">3</div>
+            <div class="punto-nivel pin-4" onclick="abrirNivel(4)">4</div>
+        </div>
 
         <div id="modal-oscurecer" class="overlay" onclick="cerrarReto()"></div>
-
-<div id="ventana-reto" class="modal-tarjeta">
-
-    <div class="modal-header">
-
-        <h2 id="modal-titulo">Capítulo</h2>
-
-        <button class="btn-nav btn-salir" onclick="cerrarReto()">X</button>
-
-    </div>
-
-   <div class="modal-cuerpo">
-
-    <div class="escenario-visual" style="position: relative;">
-
-        <img id="modal-img" src="" alt="Escenario">
-
-        <div id="slot-5" style="position: absolute; top: 12%; left: 45%; width: 50px; height: 50px;"></div>
-
-        <div id="slot-4" style="position: absolute; top: 28%; left: 45%; width: 50px; height: 50px;"></div>
-
-        <div id="slot-3" style="position: absolute; top: 44%; left: 45%; width: 50px; height: 50px;"></div>
-
-        <div id="slot-2" style="position: absolute; top: 60%; left: 45%; width: 50px; height: 50px;"></div>
-
-        <div id="slot-1" style="position: absolute; top: 76%; left: 45%; width: 50px; height: 50px;"></div>
-
-    </div>
-
-
-
-    <div id="galeria-objetos" style="display: none; justify-content: center; align-items: center; gap: 15px; padding: 10px; background: #f3e5f5; border-radius: 20px;">
-
-        <img src="assets/portatil.png" onclick="moverAlEstante('portatil')" style="width:50px; cursor:pointer;">
-
-        <img src="assets/reloj.png" onclick="moverAlEstante('reloj')" style="width:50px; cursor:pointer;">
-
-        <img src="assets/pelicula.png" onclick="moverAlEstante('pelicula')" style="width:50px; cursor:pointer;">
-
-        <img src="assets/tablet.png" onclick="moverAlEstante('tablet')" style="width:50px; cursor:pointer;">
-
-        <img src="assets/control.png" onclick="moverAlEstante('control')" style="width:50px; cursor:pointer;">
-
-        <button onclick="reiniciarReto()" style="background: #e0e0e0; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 20px;">🔄</button>
-
-    </div>
-
-
-
-    <div class="chat-contenedor">
-
-        <div class="burbuja-tutor">
-
-            <strong id="modal-personajes">Tutores</strong>
-
-            <p id="modal-mensaje">Instrucciones...</p>
-
-        </div>
-
-        <div class="input-grupo">
-
-            <input type="text" id="user-respuesta" placeholder="Tu orden aparecerá aquí..." readonly>
-
-            <button class="btn-primario" onclick="validarRespuesta()">VALIDAR ORDEN →</button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-
-    <div id="galeria-objetos" class="objetos-galeria" style="display: none; justify-content: center; gap: 10px; padding: 10px; background: #f3e5f5; border-radius: 20px;">
-
-        <img src="assets/portatil.png" class="obj-click" onclick="moverAlEstante('portatil')" width="50">
-
-        <img src="assets/reloj.png" class="obj-click" onclick="moverAlEstante('reloj')" width="50">
-
-        <img src="assets/pelicula.png" class="obj-click" onclick="moverAlEstante('pelicula')" width="50">
-
-        <img src="assets/tablet.png" class="obj-click" onclick="moverAlEstante('tablet')" width="50">
-
-        <img src="assets/control.png" class="obj-click" onclick="moverAlEstante('control')" width="50">
-
-    </div>
-
-
-
-    <div class="chat-contenedor">
-
-        <div class="burbuja-tutor">
-
-            <strong id="modal-personajes">Personajes</strong>
-
-            <p id="modal-mensaje">Instrucciones del reto...</p>
-
-        </div>
-
-        <div class="input-grupo">
-
-            <input type="text" id="user-respuesta" placeholder="Orden: 1, 2, 3..." readonly>
-
-            <button class="btn-primario" onclick="validarRespuesta()">VALIDAR ORDEN →</button>
-
-            <button class="btn-nav btn-salir" onclick="reiniciarReto0()" style="background:#eee; color:#333;">🔄</button>
-
-        </div>
-
-    </div>
-
-</div>
-
-</div>
-
         
+        <div id="ventana-reto" class="modal-tarjeta">
+            <div class="modal-header">
+                <h2 id="modal-titulo">Capítulo</h2>
+                <button class="btn-nav btn-salir" onclick="cerrarReto()">X</button>
+            </div>
+            
+            <div class="modal-cuerpo">
+                <div class="escenario-visual" style="position: relative;">
+                    <img id="modal-img" src="" alt="Escenario">
+                    <div id="slot-5" style="position: absolute; top: 12%; left: 45%; width: 50px; height: 50px;"></div>
+                    <div id="slot-4" style="position: absolute; top: 28%; left: 45%; width: 50px; height: 50px;"></div>
+                    <div id="slot-3" style="position: absolute; top: 44%; left: 45%; width: 50px; height: 50px;"></div>
+                    <div id="slot-2" style="position: absolute; top: 60%; left: 45%; width: 50px; height: 50px;"></div>
+                    <div id="slot-1" style="position: absolute; top: 76%; left: 45%; width: 50px; height: 50px;"></div>
+                </div>
+
+                <div id="galeria-objetos" style="display: none; justify-content: center; align-items: center; gap: 15px; padding: 10px; background: #f3e5f5; border-radius: 20px; margin: 10px 0;">
+                    <img src="assets/portatil.png" onclick="moverAlEstante('portatil')" style="width:50px; cursor:pointer;" alt="Portátil">
+                    <img src="assets/reloj.png" onclick="moverAlEstante('reloj')" style="width:50px; cursor:pointer;" alt="Reloj">
+                    <img src="assets/pelicula.png" onclick="moverAlEstante('pelicula')" style="width:50px; cursor:pointer;" alt="Película">
+                    <img src="assets/tablet.png" onclick="moverAlEstante('tablet')" style="width:50px; cursor:pointer;" alt="Tablet">
+                    <img src="assets/control.png" onclick="moverAlEstante('control')" style="width:50px; cursor:pointer;" alt="Control">
+                    <button onclick="reiniciarReto()" style="background: #e0e0e0; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 20px;">🔄</button>
+                </div>
+
+                <div class="chat-contenedor">
+                    <div class="burbuja-tutor">
+                        <strong id="modal-personajes">Tutores</strong>
+                        <p id="modal-mensaje">Instrucciones...</p>
+                    </div>
+                    <div class="input-grupo">
+                        <input type="text" id="user-respuesta" placeholder="Tu orden aparecerá aquí..." readonly>
+                        <button class="btn-primario" onclick="validarRespuesta()">VALIDAR ORDEN →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <footer class="creditos-finales">
-
             <div class="nombre-autor">Jorge Armando Jaramillo Bravo</div>
-
             <div class="titulos-academicos">
-
                 <span>⚛️ Licenciado en matemáticas y física (UdeA)</span>
-
                 <span>♉ Magister en enseñanza (UNAL)</span>
-
                 <span>🎓 Doctorante en Educación (UTEL)</span>
-
             </div>
-
             <div class="colaboradores">
-
                 Colaboradores: Didier Garcia - Didier Durango
-
             </div>
-
             <div class="copyright-lab">
-
                 © 2026 - LABORATORIO INTERACTIVO JOSEFA CAMPOS
-
             </div>
         </footer>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
