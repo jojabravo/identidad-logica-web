@@ -180,3 +180,31 @@ const htmlInventario = `
 
 // Insertamos el inventario justo antes del área de texto
 document.querySelector('.burbuja-tutor').insertAdjacentHTML('afterend', htmlInventario);
+
+// Array para guardar el orden en que el estudiante toca los objetos
+let seleccionEstudiante = [];
+
+function seleccionarObjeto(nombreObjeto) {
+    if (seleccionEstudiante.length < 5 && !seleccionEstudiante.includes(nombreObjeto)) {
+        seleccionEstudiante.push(nombreObjeto);
+        
+        // Buscamos el nivel visual (del 5 al 1)
+        const nivelVisual = 5 - (seleccionEstudiante.length - 1);
+        
+        // Actualizamos el estante visualmente (necesitas IDs en tus estantes)
+        const estanteNivel = document.getElementById(`nivel-${nivelVisual}`);
+        if (estanteNivel) {
+            estanteNivel.innerHTML = `<img src="assets/${nombreObjeto}.png" style="height: 40px; animate: bounce;">`;
+        }
+        
+        console.log("Orden actual: " + seleccionEstudiante.join(", "));
+    }
+}
+
+// Función para limpiar si se equivocan
+function reiniciarEstante() {
+    seleccionEstudiante = [];
+    for(let i=1; i<=5; i++) {
+        document.getElementById(`nivel-${i}`).innerHTML = "";
+    }
+}
