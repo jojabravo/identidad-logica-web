@@ -208,3 +208,53 @@ function reiniciarEstante() {
         document.getElementById(`nivel-${i}`).innerHTML = "";
     }
 }
+
+let ordenActual = [];
+
+function moverAlEstante(nombre) {
+    if (ordenActual.length < 5 && !ordenActual.includes(nombre)) {
+        ordenActual.push(nombre);
+        
+        // El primero que toca va al nivel 5 (arriba), el segundo al 4...
+        let nivel = 5 - (ordenActual.length - 1);
+        let slot = document.getElementById(`slot-${nivel}`);
+        
+        if (slot) {
+            slot.innerHTML = `<img src="assets/${nombre}.png" style="width:100%; height:100%; object-fit:contain; animation: aparecer 0.3s ease;">`;
+            slot.style.pointerEvents = "auto";
+        }
+        
+        // Escribir automáticamente en el input para que Gemini lo vea
+        document.getElementById('user-respuesta').value = ordenActual.join(", ");
+    }
+}
+
+function reiniciarReto0() {
+    ordenActual = [];
+    document.getElementById('user-respuesta').value = "";
+    for(let i=1; i<=5; i++) {
+        document.getElementById(`slot-${i}`).innerHTML = "";
+    }
+}
+
+// Modifica tu abrirNivel para mostrar la galería solo en el nivel 0
+function abrirNivel(id) {
+    const nivel = niveles[id];
+    nivelActualId = id;
+    
+    document.getElementById('modal-titulo').innerText = nivel.titulo;
+    document.getElementById('modal-mensaje').innerText = nivel.mensaje;
+    document.getElementById('modal-img').src = nivel.imagen;
+    
+    // Si es el hogar, mostrar los objetos
+    const galeria = document.getElementById('galeria-objetos');
+    if(id === 0) {
+        galeria.style.display = 'flex';
+        reiniciarReto0();
+    } else {
+        galeria.style.display = 'none';
+    }
+
+    document.getElementById('modal-oscurecer').style.display = 'block';
+    document.getElementById('ventana-reto').style.display = 'block';
+}
