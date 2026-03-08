@@ -33,8 +33,6 @@
             max-width: 400px;
         }
 
-        .caja-login h2 { color: var(--purpura); margin-bottom: 20px; }
-
         .input-login {
             width: 100%;
             padding: 15px;
@@ -54,11 +52,10 @@
             border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
             font-size: 1rem;
         }
 
-        /* INTERFAZ DEL JUEGO (OCULTA AL INICIO) */
+        /* INTERFAZ DEL JUEGO */
         #interfaz-juego { display: none; }
 
         .navbar {
@@ -70,24 +67,24 @@
             border-bottom: 1px solid #eee;
         }
 
-        .info-perfil { display: flex; align-items: center; gap: 15px; }
-        .icono-lab { background: var(--purpura-suave); padding: 10px; border-radius: 12px; }
+        .perfil-nav { display: flex; align-items: center; gap: 12px; }
+        .casa-icon { background: var(--purpura-suave); padding: 8px; border-radius: 10px; }
 
-        /* MAPA INTERACTIVO */
-        .contenedor-mapa {
+        /* CONTENEDOR DEL MAPA REAL */
+        .mapa-interactivo {
             position: relative;
             max-width: 900px;
-            margin: 40px auto;
-            border-radius: 30px;
+            margin: 30px auto;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            border: 5px solid white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            border: 6px solid white;
         }
 
-        .img-mapa { width: 100%; display: block; }
+        .img-mapa-bg { width: 100%; display: block; }
 
-        /* Botones sobre el mapa calle-barrio.jpg */
-        .punto {
+        /* PUNTOS DE NIVEL (0 al 4) */
+        .punto-nivel {
             position: absolute;
             width: 40px;
             height: 40px;
@@ -101,88 +98,89 @@
             cursor: pointer;
             border: 3px solid white;
             transition: 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
-        .punto:hover { transform: scale(1.2); background: #7b1fa2; }
 
-        /* Ubicaciones basadas en calle-barrio.jpg */
-        #p0 { top: 15%; left: 16%; }
-        #p1 { top: 35%; left: 34%; }
-        #p2 { top: 62%; left: 88%; }
-        #p3 { top: 88%; left: 18%; }
-        #p4 { top: 55%; left: 61%; }
+        .punto-nivel:hover { transform: scale(1.2); background: #7b1fa2; }
 
-        /* FOOTER ACADÉMICO image_bacba3.png */
+        /* Posiciones ajustadas para calle-barrio.jpg */
+        #lvl0 { top: 15%; left: 16%; }
+        #lvl1 { top: 35%; left: 34%; }
+        #lvl2 { top: 62%; left: 88%; }
+        #lvl3 { top: 88%; left: 18%; }
+        #lvl4 { top: 55%; left: 61%; }
+
+        /* CRÉDITOS 2026 Estilo image_bacba3.png */
         footer {
             text-align: center;
             padding: 40px;
             background: white;
-            margin-top: 50px;
             border-top: 1px solid #eee;
         }
+
+        .autor { color: var(--purpura); font-size: 1.5rem; font-weight: bold; margin-bottom: 10px; }
+        .titulos { font-size: 0.85rem; color: #5f6368; margin-bottom: 15px; }
+        .copy-lab { font-weight: bold; color: #81c784; font-size: 0.8rem; margin-top: 20px; }
     </style>
 </head>
 <body>
 
     <div id="pantalla-login">
         <div class="caja-login">
-            <img src="https://img.icons8.com/fluency/96/brain.png" alt="Brain Icon"><br>
-            <h2>Identidad Lógica</h2>
-            <p style="color: #777; font-size: 0.9rem;">Bienvenido al Laboratorio Interactivo</p>
-            <input type="text" id="nombre-input" class="input-login" placeholder="Escribe tu nombre completo...">
-            <button class="btn-entrar" onclick="iniciarSesion()">INGRESAR AL JUEGO →</button>
+            <h2 style="color: var(--purpura);">Identidad Lógica</h2>
+            <p>Laboratorio Interactivo Josefa Campos</p>
+            <input type="text" id="user-name" class="input-login" placeholder="Escribe tu nombre completo...">
+            <button class="btn-entrar" onclick="login()">INGRESAR AL JUEGO →</button>
         </div>
     </div>
 
     <div id="interfaz-juego">
         <nav class="navbar">
-            <div class="info-perfil">
-                <div class="icono-lab">🏠</div>
+            <div class="perfil-nav">
+                <div class="casa-icon">🏠</div>
                 <div>
-                    <div style="font-weight: bold; color: var(--purpura); font-size: 1.1rem;">Identidad Lógica</div>
+                    <div style="font-weight: bold; color: var(--purpura);">Identidad Lógica</div>
                     <div style="font-size: 10px; color: #9aa0a6; text-transform: uppercase;">
-                        Estudiante: <span id="nombre-estudiante-display"></span>
+                        Estudiante: <span id="display-name"></span>
                     </div>
                 </div>
             </div>
-            <div>
-                <button style="padding: 8px 15px; border-radius: 20px; border: none; background: #ffebee; color: #f44336; font-weight: bold; cursor: pointer;" onclick="location.reload()">SALIR</button>
-            </div>
+            <button onclick="location.reload()" style="border:none; background:#ffebee; color:#f44336; padding:8px 15px; border-radius:20px; cursor:pointer; font-weight:bold;">SALIR</button>
         </nav>
 
-        <div class="contenedor-mapa">
-            <img src="calle-barrio.jpg" class="img-mapa">
-            <div class="punto" id="p0" onclick="alert('Nivel 0: Casa')">0</div>
-            <div class="punto" id="p1" onclick="alert('Nivel 1: Supermercado')">1</div>
-            <div class="punto" id="p2" onclick="alert('Nivel 2: Edificio')">2</div>
-            <div class="punto" id="p3" onclick="alert('Nivel 3: Panadería')">3</div>
-            <div class="punto" id="p4" onclick="alert('Nivel 4: Tienda')">4</div>
+        <div class="mapa-interactivo">
+            <img src="calle-barrio.jpg" class="img-mapa-bg" alt="Mapa del Barrio">
+            
+            <div class="punto-nivel" id="lvl0" onclick="alert('Iniciando Nivel 0: La Casa')">0</div>
+            <div class="punto-nivel" id="lvl1" onclick="alert('Iniciando Nivel 1: Supermercado')">1</div>
+            <div class="punto-nivel" id="lvl2" onclick="alert('Iniciando Nivel 2: El Edificio')">2</div>
+            <div class="punto-nivel" id="lvl3" onclick="alert('Iniciando Nivel 3: La Panadería')">3</div>
+            <div class="punto-nivel" id="lvl4" onclick="alert('Iniciando Nivel 4: Tienda')">4</div>
         </div>
 
         <footer>
-            <div style="color: var(--purpura); font-size: 1.4rem; font-weight: bold;">Jorge Armando Jaramillo Bravo</div>
-            <div style="margin: 15px 0; font-size: 0.85rem; color: #5f6368;">
-                ⚛️ Licenciado en matemáticas y física (UdeA) &nbsp;&nbsp; 
-                ♉ Magister (UNAL) &nbsp;&nbsp; 
-                🎓 Doctorante en Educación (UTEL)
+            <div class="autor">Jorge Armando Jaramillo Bravo</div>
+            <div class="titulos">
+                ⚛️ Licenciado en matemáticas y física (UdeA) | ♉ Magister (UNAL) | 🎓 Doctorante en Educación (UTEL)
             </div>
-            <div style="font-size: 0.85rem; color: #777; margin-bottom: 20px;">
+            <div style="font-size: 0.8rem; color: #777;">
                 Colaboradores: Didier Garcia y Didier Durango | IE Josefa Campos
             </div>
-            <div style="font-weight: bold; color: #81c784; font-size: 0.75rem;">
+            <div class="copy-lab">
                 © 2026 - LABORATORIO INTERACTIVO JOSEFA CAMPOS
             </div>
         </footer>
     </div>
 
     <script>
-        function iniciarSesion() {
-            const nombre = document.getElementById('nombre-input').value;
-            if (nombre.trim() !== "") {
-                document.getElementById('nombre-estudiante-display').innerText = nombre;
+        function login() {
+            const n = document.getElementById('user-name').value;
+            if(n.trim() !== "") {
+                document.getElementById('display-name').innerText = n;
                 document.getElementById('pantalla-login').style.display = 'none';
                 document.getElementById('interfaz-juego').style.display = 'block';
             } else {
-                alert("Por favor, ingresa tu nombre para continuar.");
+                alert("Por favor, ingresa tu nombre.");
             }
         }
     </script>
