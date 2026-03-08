@@ -66,7 +66,7 @@ function cerrarReto() {
 }
 
 // ==========================================
-// LÓGICA DEL RETO 0 (EL HOGAR)
+// LÓGICA DEL RETO (MOVIMIENTO)
 // ==========================================
 
 function moverAlEstante(nombreObjeto) {
@@ -83,19 +83,25 @@ function moverAlEstante(nombreObjeto) {
         slot.innerHTML = `<img src="assets/${nombreObjeto}.png" style="width:100%; height:100%; object-fit:contain;">`;
     }
     
-    // Actualizar el input de texto (opcional, para ver el progreso)
+    // Escribir automáticamente en el input
     document.getElementById('user-respuesta').value = seleccionEstudiante.join(", ");
 }
 
 function reiniciarReto() {
     seleccionEstudiante = [];
-    document.getElementById('user-respuesta').value = "";
+    const inputRespuesta = document.getElementById('user-respuesta');
+    if(inputRespuesta) inputRespuesta.value = "";
+    
     // Limpiar los slots del 1 al 5
     for(let i=1; i<=5; i++) {
         const slot = document.getElementById(`slot-${i}`);
         if(slot) slot.innerHTML = "";
     }
 }
+
+// ==========================================
+// MOTOR LÓGICO Y EVALUACIÓN
+// ==========================================
 
 function validarRespuesta() {
     const nivel = niveles.find(n => n.id === nivelActualId);
@@ -105,7 +111,7 @@ function validarRespuesta() {
         return;
     }
 
-    // Comparar orden exacto
+    // Comparar orden exacto con la clave de la base de datos
     const esCorrecto = nivel.clave.every((val, index) => val === seleccionEstudiante[index]);
 
     if (esCorrecto) {
