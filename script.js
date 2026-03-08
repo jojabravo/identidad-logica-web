@@ -32,31 +32,47 @@ const niveles = [
     }
 ];
 
+// Variables de estado del estudiante
 let monedas = 0;
 let nivelesCompletados = 0;
 
+// Función de Inicio de Sesión
 function login() {
     const nombre = document.getElementById('user-name').value;
     if (nombre.trim() !== "") {
         document.getElementById('display-name').innerText = nombre.toUpperCase();
         document.getElementById('pantalla-login').style.display = 'none';
         document.getElementById('interfaz-juego').style.display = 'block';
+        console.log("Sesión iniciada: " + nombre);
     } else {
-        alert("Por favor, ingresa tu nombre.");
+        alert("Por favor, ingresa tu nombre completo para el Laboratorio.");
     }
 }
 
+// Función para abrir los retos desde el mapa
 function abrirNivel(id) {
     const nivel = niveles[id];
-    // Aquí es donde activaremos la ventana modal con la estética de módulo que elegiste
     console.log("Cargando: " + nivel.titulo);
+    
+    // Por ahora usamos un alert, pero ya está listo para conectar con tu ventana modal
     alert(nivel.titulo + "\n" + nivel.mensaje);
+    
+    // Ejemplo de cómo ganarías puntos al resolverlo (Simulación)
+    // actualizarMarcadores(50); 
 }
 
+// Función para actualizar monedas y barra de progreso
 function actualizarMarcadores(puntos) {
     monedas += puntos;
     nivelesCompletados += 1;
+    
+    // Actualizar texto de monedas
     document.getElementById('puntos-actuales').innerText = monedas;
+    
+    // Actualizar barra de progreso (dividido entre 5 niveles totales)
     const porcentaje = (nivelesCompletados / 5) * 100;
-    document.getElementById('progreso-visual').style.width = porcentaje + "%";
+    const barra = document.getElementById('progreso-visual');
+    if (barra) {
+        barra.style.width = porcentaje + "%";
+    }
 }
