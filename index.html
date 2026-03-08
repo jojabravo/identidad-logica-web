@@ -1,188 +1,90 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Identidad Lógica | Laboratorio Josefa Campos</title>
-    <style>
-        :root {
-            --purpura: #9c27b0;
-            --purpura-suave: #f3e5f5;
-            --blanco: #ffffff;
-            --fondo: #f8f9fa;
-        }
+<style>
+    /* Estilo de la Barra de Progreso imitando image_ba6a48.png */
+    .contenedor-progreso {
+        background-color: #f1f3f4;
+        border-radius: 20px;
+        height: 12px;
+        width: 150px;
+        margin: 0 15px;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid #e0e0e0;
+    }
 
-        body { font-family: 'Segoe UI', Roboto, sans-serif; background-color: var(--fondo); margin: 0; }
+    .barra-relleno {
+        background: linear-gradient(90deg, #9c27b0, #e1bee7);
+        height: 100%;
+        width: 0%; /* Se actualiza con JS */
+        transition: width 0.5s ease;
+        border-radius: 20px;
+    }
 
-        /* PANTALLA DE INICIO DE SESIÓN */
-        #pantalla-login {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, var(--purpura-suave) 0%, #ffffff 100%);
-        }
+    .monedas-display {
+        background-color: #fff9c4;
+        color: #f57f17;
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-weight: bold;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        border: 1px solid #fbc02d;
+    }
+</style>
 
-        .caja-login {
-            background: white;
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            text-align: center;
-            width: 100%;
-            max-width: 400px;
-        }
-
-        .input-login {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 12px;
-            border: 1px solid #ddd;
-            box-sizing: border-box;
-            font-size: 1rem;
-        }
-
-        .btn-entrar {
-            width: 100%;
-            padding: 15px;
-            background: var(--purpura);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        /* INTERFAZ DEL JUEGO */
-        #interfaz-juego { display: none; }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 40px;
-            background: white;
-            border-bottom: 1px solid #eee;
-        }
-
-        .perfil-nav { display: flex; align-items: center; gap: 12px; }
-        .casa-icon { background: var(--purpura-suave); padding: 8px; border-radius: 10px; }
-
-        /* CONTENEDOR DEL MAPA REAL */
-        .mapa-interactivo {
-            position: relative;
-            max-width: 900px;
-            margin: 30px auto;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            border: 6px solid white;
-        }
-
-        .img-mapa-bg { width: 100%; display: block; }
-
-        /* PUNTOS DE NIVEL (0 al 4) */
-        .punto-nivel {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: var(--purpura);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            cursor: pointer;
-            border: 3px solid white;
-            transition: 0.3s;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-
-        .punto-nivel:hover { transform: scale(1.2); background: #7b1fa2; }
-
-        /* Posiciones ajustadas para calle-barrio.jpg */
-        #lvl0 { top: 15%; left: 16%; }
-        #lvl1 { top: 35%; left: 34%; }
-        #lvl2 { top: 62%; left: 88%; }
-        #lvl3 { top: 88%; left: 18%; }
-        #lvl4 { top: 55%; left: 61%; }
-
-        /* CRÉDITOS 2026 Estilo image_bacba3.png */
-        footer {
-            text-align: center;
-            padding: 40px;
-            background: white;
-            border-top: 1px solid #eee;
-        }
-
-        .autor { color: var(--purpura); font-size: 1.5rem; font-weight: bold; margin-bottom: 10px; }
-        .titulos { font-size: 0.85rem; color: #5f6368; margin-bottom: 15px; }
-        .copy-lab { font-weight: bold; color: #81c784; font-size: 0.8rem; margin-top: 20px; }
-    </style>
-</head>
-<body>
-
-    <div id="pantalla-login">
-        <div class="caja-login">
-            <h2 style="color: var(--purpura);">Identidad Lógica</h2>
-            <p>Laboratorio Interactivo Josefa Campos</p>
-            <input type="text" id="user-name" class="input-login" placeholder="Escribe tu nombre completo...">
-            <button class="btn-entrar" onclick="login()">INGRESAR AL JUEGO →</button>
+<nav class="navbar">
+    <div class="perfil-nav">
+        <div class="casa-icon">🏠</div>
+        <div>
+            <div style="font-weight: bold; color: var(--purpura); font-size: 14px;">Identidad Lógica</div>
+            <div style="font-size: 10px; color: #9aa0a6; text-transform: uppercase;">
+                Estudiante: <span id="display-name"></span>
+            </div>
         </div>
     </div>
 
-    <div id="interfaz-juego">
-        <nav class="navbar">
-            <div class="perfil-nav">
-                <div class="casa-icon">🏠</div>
-                <div>
-                    <div style="font-weight: bold; color: var(--purpura);">Identidad Lógica</div>
-                    <div style="font-size: 10px; color: #9aa0a6; text-transform: uppercase;">
-                        Estudiante: <span id="display-name"></span>
-                    </div>
-                </div>
-            </div>
-            <button onclick="location.reload()" style="border:none; background:#ffebee; color:#f44336; padding:8px 15px; border-radius:20px; cursor:pointer; font-weight:bold;">SALIR</button>
-        </nav>
-
-        <div class="mapa-interactivo">
-            <img src="calle-barrio.jpg" class="img-mapa-bg" alt="Mapa del Barrio">
-            
-            <div class="punto-nivel" id="lvl0" onclick="alert('Iniciando Nivel 0: La Casa')">0</div>
-            <div class="punto-nivel" id="lvl1" onclick="alert('Iniciando Nivel 1: Supermercado')">1</div>
-            <div class="punto-nivel" id="lvl2" onclick="alert('Iniciando Nivel 2: El Edificio')">2</div>
-            <div class="punto-nivel" id="lvl3" onclick="alert('Iniciando Nivel 3: La Panadería')">3</div>
-            <div class="punto-nivel" id="lvl4" onclick="alert('Iniciando Nivel 4: Tienda')">4</div>
+    <div style="display: flex; align-items: center;">
+        <div style="font-size: 10px; font-weight: bold; color: var(--purpura);">PROGRESO:</div>
+        <div class="contenedor-progreso">
+            <div id="progreso-visual" class="barra-relleno"></div>
         </div>
-
-        <footer>
-            <div class="autor">Jorge Armando Jaramillo Bravo</div>
-            <div class="titulos">
-                ⚛️ Licenciado en matemáticas y física (UdeA) | ♉ Magister (UNAL) | 🎓 Doctorante en Educación (UTEL)
-            </div>
-            <div style="font-size: 0.8rem; color: #777;">
-                Colaboradores: Didier Garcia y Didier Durango | IE Josefa Campos
-            </div>
-            <div class="copy-lab">
-                © 2026 - LABORATORIO INTERACTIVO JOSEFA CAMPOS
-            </div>
-        </footer>
+        <div class="monedas-display">
+            💰 <span id="puntos-actuales">0</span>
+        </div>
     </div>
 
-    <script>
-        function login() {
-            const n = document.getElementById('user-name').value;
-            if(n.trim() !== "") {
-                document.getElementById('display-name').innerText = n;
-                document.getElementById('pantalla-login').style.display = 'none';
-                document.getElementById('interfaz-juego').style.display = 'block';
-            } else {
-                alert("Por favor, ingresa tu nombre.");
-            }
+    <div class="nav-buttons">
+        <button class="btn-nav btn-buzon">✉ BUZÓN</button>
+        <button onclick="location.reload()" class="btn-nav btn-salir">SALIR</button>
+    </div>
+</nav>
+
+<script>
+    let monedasTotales = 0;
+    let nivelesCompletados = 0;
+
+    function login() {
+        const n = document.getElementById('user-name').value;
+        if(n.trim() !== "") {
+            document.getElementById('display-name').innerText = n;
+            document.getElementById('pantalla-login').style.display = 'none';
+            document.getElementById('interfaz-juego').style.display = 'block';
         }
-    </script>
-</body>
-</html>
+    }
+
+    // Función para actualizar monedas y progreso visual
+    function ganarPremio(puntos) {
+        monedasTotales += puntos;
+        nivelesCompletados += 1;
+        
+        // Actualiza el texto de monedas
+        document.getElementById('puntos-actuales').innerText = monedasTotales;
+        
+        // Actualiza la barra (5 niveles = 100%)
+        const porcentaje = (nivelesCompletados / 5) * 100;
+        document.getElementById('progreso-visual').style.width = porcentaje + "%";
+        
+        alert("¡Felicidades! Ganaste " + puntos + " monedas virtuales para el Laboratorio Josefa Campos.");
+    }
+</script>
