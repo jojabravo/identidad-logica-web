@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Identidad Lógica | Laboratorio Josefa Campos</title>
+    <title>Lógica 6º/7º | Josefa Campos</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div id="pantalla-login">
         <div class="caja-login">
+            <div class="logo-login">🏠</div>
             <h2>Identidad Lógica</h2>
-            <input type="text" id="user-name" placeholder="Escribe tu nombre completo...">
-            <button onclick="login()">INGRESAR AL JUEGO →</button>
+            <p>Laboratorio Interactivo Josefa Campos</p>
+            <input type="text" id="user-name" class="input-moderno" placeholder="Escribe tu nombre completo...">
+            <button class="btn-primario" onclick="login()">INGRESAR AL JUEGO →</button>
         </div>
     </div>
 
@@ -21,7 +23,7 @@
             <div class="perfil-nav">
                 <div class="casa-icon">🏠</div>
                 <div class="user-info">
-                    <span class="game-title">Identidad Lógica</span>
+                    <span class="game-title">Lógica 6º/7º</span>
                     <span class="student-name">ESTUDIANTE: <span id="display-name"></span></span>
                 </div>
             </div>
@@ -36,26 +38,33 @@
 
             <div class="nav-buttons">
                 <button class="btn-nav btn-buzon">✉ BUZÓN</button>
+                <button class="btn-nav btn-notas">📝 MIS NOTAS</button>
                 <button onclick="location.reload()" class="btn-nav btn-salir">SALIR</button>
             </div>
         </nav>
 
-        <div class="mapa-container">
-            <img src="calle-barrio.jpg" class="img-mapa" alt="Barrio Josefa Campos">
+        <main class="contenedor-mapa">
+            <img src="calle-barrio.jpg" class="img-mapa" alt="Mapa del Barrio">
             <div class="punto-nivel" id="lvl0" onclick="abrirNivel(0)">0</div>
             <div class="punto-nivel" id="lvl1" onclick="abrirNivel(1)">1</div>
             <div class="punto-nivel" id="lvl2" onclick="abrirNivel(2)">2</div>
             <div class="punto-nivel" id="lvl3" onclick="abrirNivel(3)">3</div>
             <div class="punto-nivel" id="lvl4" onclick="abrirNivel(4)">4</div>
-        </div>
+        </main>
 
-        <footer>
-            <div class="autor">Jorge Armando Jaramillo Bravo</div>
-            <div class="titulos">
-                ⚛️ Licenciado en matemáticas y física (UdeA) | ♉ Magister (UNAL) | 🎓 Doctorante en Educación (UTEL)
+        <footer class="creditos-finales">
+            <div class="nombre-autor">Jorge Armando Jaramillo Bravo</div>
+            <div class="titulos-academicos">
+                <span>⚛️ Licenciado en matemáticas y física (UdeA)</span>
+                <span>♉ Magister en enseñanza (UNAL)</span>
+                <span>🎓 Doctorante en Educación (UTEL)</span>
             </div>
-            <div class="colaboradores">Colaboradores: Didier Garcia y Didier Durango | IE Josefa Campos</div>
-            <div class="copy-lab">© 2026 - LABORATORIO INTERACTIVO JOSEFA CAMPOS</div>
+            <div class="colaboradores">
+                Colaboradores: Didier Garcia y Didier Durango | IE Josefa Campos
+            </div>
+            <div class="copyright-lab">
+                © 2026 - LABORATORIO INTERACTIVO JOSEFA CAMPOS
+            </div>
         </footer>
     </div>
 
