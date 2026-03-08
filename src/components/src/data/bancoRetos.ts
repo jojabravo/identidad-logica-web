@@ -1,5 +1,6 @@
 // src/data/bancoRetos.ts
 import { Reto } from '../types';
+
 export const bancoRetos: Reto[] = [
   {
     id: 0,
@@ -22,15 +23,16 @@ export const bancoRetos: Reto[] = [
     tipo_ordenamiento: 'horizontal',
     orden_correcto: ["Café", "Pan", "Leche", "Huevos"],
     pista_andamiaje: "Empieza por el café a la izquierda y termina con los huevos a la derecha.",
-    imagen_url: "assets/Escenario1.png"
+    imagen_url: "assets/Escenario1.png",
+    ambiente: "Dinámico, naranjas y azules saturados"
   },
- {
+  {
     id: 2,
     titulo: "Escenario 2: El Edificio",
     escenario: "JuegoEdificio",
     personajes: ["Sacha", "Mateo"],
     mision: "¡Rápido! Atrapa las gotas de agua para que el suelo no se moje. Mientras tanto, lleva a los inquilinos a sus pisos según las pistas.",
-    tipo_ordenamiento: 'vertical', // Con mecánica de fricción motora
+    tipo_ordenamiento: 'vertical',
     orden_correcto: ["Hugo", "Paco", "Luis"],
     pista_andamiaje: "Hugo vive arriba de Paco. ¡No dejes que caigan las gotas!",
     imagen_url: "assets/Escenario2.3.png",
@@ -45,8 +47,9 @@ export const bancoRetos: Reto[] = [
     tipo_ordenamiento: 'circular',
     orden_correcto: ["Juan", "Rosa", "Luis", "Ana"],
     pista_andamiaje: "Si Juan está en un extremo, Rosa debe estar justo al lado opuesto.",
-    imagen_url: "assets/Escenario3.png"
-  }
+    imagen_url: "assets/Escenario3.png",
+    ambiente: "Acogedor, tonos cafés, cremas y amarillos"
+  },
   {
     id: 4,
     titulo: "Escenario 4: La Tienda",
@@ -57,7 +60,6 @@ export const bancoRetos: Reto[] = [
     orden_correcto: ["Carla-Blusa", "Daniela-Camisa", "Eliana-Jean"],
     pista_andamiaje: "Usa la deducción por eliminación para llenar la cuadrícula.",
     imagen_url: "assets/Escenario4.png",
-    ambiente: "Sofisticado, magenta y violeta"
-  }
+    ambiente: "Sofisticado, magenta, violeta y blanco"
   }
 ];
