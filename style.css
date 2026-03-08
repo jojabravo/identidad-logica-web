@@ -102,3 +102,43 @@ body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin: 0; background
     gap: 10px;
     margin-top: 15px;
 }
+/* AJUSTES PARA CELULAR (Pantallas de menos de 600px) */
+@media (max-width: 600px) {
+    /* 1. Navbar en columna para que nada se amontone */
+    .navbar {
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+    }
+
+    /* 2. El progreso y monedas ocuparán todo el ancho */
+    .gamificacion {
+        width: 100%;
+        justify-content: space-around;
+        order: 2; /* Lo ponemos debajo del nombre */
+    }
+
+    .contenedor-progreso {
+        width: 100px; /* Un poco más pequeño para que quepa todo */
+    }
+
+    /* 3. Los botones de acción (Buzón, Salir) en una fila dedicada */
+    .nav-buttons {
+        width: 100%;
+        justify-content: center;
+        order: 3;
+    }
+
+    /* 4. Ajustar el mapa para que no se vea gigante */
+    .contenedor-mapa {
+        margin: 15px auto;
+        border-width: 3px;
+    }
+
+    /* 5. Créditos académicos en columna para mejor lectura */
+    .titulos-academicos {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+}
