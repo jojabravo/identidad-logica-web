@@ -186,3 +186,9 @@ body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin: 0; background
         align-items: center;
     }
 }
+/* Estas son las coordenadas para cada pin individual */
+.pin-0 { top: 5%; left: 16%; }   /* Encima de la Casa */
+.pin-1 { top: 40%; left: 45%; }  /* Encima del Supermercado */
+.pin-2 { top: 48%; left: 88%; }  /* Encima del Edificio */
+.pin-3 { top: 85%; left: 10%; }  /* Encima de la Panadería */
+.pin-4 { top: 54%; left: 63%; }  /* Encima de la Tienda de Moda */
