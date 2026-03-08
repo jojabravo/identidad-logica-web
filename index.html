@@ -3,193 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lógica 6º/7º | Laboratorio Josefa Campos</title>
+    <title>Identidad Lógica | IE Josefa Campos</title>
     <style>
         :root {
             --purpura: #9c27b0;
             --purpura-suave: #f3e5f5;
-            --gris-texto: #5f6368;
             --blanco: #ffffff;
-            --borde: #f1f3f4;
+            --sombra: rgba(0,0,0,0.1);
         }
 
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--blanco);
+            background-color: #f8f9fa;
             margin: 0;
-            color: var(--gris-texto);
+            overflow-x: hidden;
         }
 
-        /* Navbar Estilo image_bacbe1.png */
+        /* Navbar Superior Profesional */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px 40px;
-            border-bottom: 1px solid var(--borde);
+            background: var(--blanco);
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .perfil-estudiante {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .perfil { display: flex; align-items: center; gap: 12px; }
+        .icono-home { background: var(--purpura-suave); color: var(--purpura); padding: 8px 12px; border-radius: 10px; font-weight: bold; }
+        
+        .btn-nav { padding: 8px 18px; border-radius: 20px; border: none; font-size: 11px; font-weight: bold; cursor: pointer; }
+        .btn-buzon { background: #e8eaf6; color: #3f51b5; margin-right: 8px; }
 
-        .icono-home {
-            background-color: var(--purpura-suave);
-            color: var(--purpura);
-            padding: 8px 12px;
-            border-radius: 10px;
-            font-weight: bold;
-        }
-
-        .nav-buttons { display: flex; gap: 10px; }
-        .btn-nav {
-            padding: 6px 15px;
-            border-radius: 20px;
-            border: none;
-            font-size: 11px;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-        .btn-buzon { background: #e8eaf6; color: #3f51b5; }
-        .btn-salir { background: #ffebee; color: #f44336; }
-        .btn-notas { background: var(--purpura-suave); color: var(--purpura); }
-
-        /* Banner Avisos */
-        .contenedor { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
-        .banner-avisos {
-            background-color: #fff9c4;
-            padding: 15px 25px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        /* Tarjetas de Unidad Estilo image_bacbe1.png */
-        .grid-unidades {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 20px;
-        }
-
-        .tarjeta-unidad {
-            border: 1px solid #e8eaed;
+        /* CONTENEDOR DEL MAPA DEL BARRIO */
+        .contenedor-mapa {
+            position: relative;
+            max-width: 900px;
+            margin: 30px auto;
             border-radius: 25px;
-            padding: 25px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            transition: 0.3s;
-            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--sombra);
+            border: 4px solid var(--blanco);
         }
 
-        .tarjeta-unidad:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .img-mapa {
+            width: 100%;
+            display: block;
+        }
 
-        .circulo-icono {
-            width: 60px;
-            height: 60px;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
+        /* Puntos interactivos sobre la imagen */
+        .punto-interactivo {
+            position: absolute;
+            width: 45px;
+            height: 45px;
+            background: var(--purpura);
             color: white;
-        }
-
-        /* Créditos Estilo image_bacba3.png */
-        .footer-creditos {
-            margin-top: 80px;
-            padding: 40px;
-            text-align: center;
-            border-top: 1px solid var(--borde);
-        }
-
-        .nombre-autor {
-            color: var(--purpura);
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .titulos-academicos {
+            border-radius: 50%;
             display: flex;
+            align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            font-size: 0.9rem;
-            color: #70757a;
-            margin-bottom: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
         }
 
-        .titulo-item { display: flex; align-items: center; gap: 8px; }
-        .icon-acad { font-size: 1.1rem; }
+        .punto-interactivo:hover {
+            transform: scale(1.2);
+            background: #7b1fa2;
+        }
 
-        .logo-lab { font-size: 0.8rem; color: #9aa0a6; letter-spacing: 1px; margin-top: 20px; }
+        /* Posicionamiento de los niveles según tu imagen calle-barrio.jpg */
+        #p0 { top: 15%; left: 15%; } /* La Casa */
+        #p1 { top: 32%; left: 33%; } /* Supermercado */
+        #p2 { top: 62%; left: 88%; } /* Edificio */
+        #p3 { top: 88%; left: 18%; } /* Panadería */
+        #p4 { top: 55%; left: 60%; } /* Tienda de Moda */
+
+        /* Modal de Juego (estilo módulo limpio) */
+        #modal-juego {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 800px;
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            z-index: 200;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 150;
+        }
+
+        /* Créditos Académicos (Estilo image_bacba3) */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+        .nombre-autor { color: var(--purpura); font-size: 1.4rem; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <nav class="navbar">
-    <div class="perfil-estudiante">
+    <div class="perfil">
         <div class="icono-home">🏠</div>
         <div>
-            <div style="font-weight: bold; color: var(--purpura);">Lógica 6º/7º</div>
-            <div style="font-size: 10px; color: #9aa0a6; text-transform: uppercase;">Estudiante: Profesor Jorge Jaramillo Bravo</div>
+            <div style="font-weight: bold; color: var(--purpura); font-size: 14px;">Lógica 6º/7º</div>
+            <div style="font-size: 10px; color: #9aa0a6;">LABORATORIO INTERACTIVO JOSEFA CAMPOS</div>
         </div>
     </div>
-    <div class="nav-buttons">
+    <div>
         <button class="btn-nav btn-buzon">✉ BUZÓN</button>
-        <button class="btn-nav btn-salir">➡ SALIR</button>
-        <button class="btn-nav btn-notas">📝 MIS NOTAS</button>
+        <span style="font-weight: bold; color: var(--purpura);">💰 0 Monedas</span>
     </div>
 </nav>
 
-<div class="contenedor">
-    <div class="banner-avisos">
-        <span style="font-size: 20px;">📢</span>
-        <div>
-            <div style="font-weight: bold; font-size: 14px;">Avisos del Profe Jorge</div>
-            <div style="font-size: 10px; color: #5f6368;">COMUNICADOS OFICIALES PARA TU GRADO</div>
-        </div>
-    </div>
-
-    <h1 style="color: #202124; font-size: 28px; margin-bottom: 5px;">Unidades de Aprendizaje</h1>
-    <p style="font-size: 14px; margin-bottom: 30px;">Selecciona la unidad para continuar tu formación</p>
-
-    <div class="grid-unidades">
-        <div class="tarjeta-unidad">
-            <div class="circulo-icono" style="background: var(--purpura);">A</div>
-            <div>
-                <div style="font-weight: bold; font-size: 14px; text-transform: uppercase;">Capítulo 1: Pensamiento Verbal</div>
-                <div style="font-size: 12px; color: #70757a; margin: 5px 0;">Ordenamiento de la información, lógica verbal y deducción.</div>
-                <div style="color: var(--purpura); font-weight: bold; font-size: 11px;">EXPLORAR MÓDULOS →</div>
-            </div>
-        </div>
-    </div>
+<div class="contenedor-mapa">
+    <img src="calle-barrio.jpg" class="img-mapa" alt="Mapa del Barrio">
+    
+    <div class="punto-interactivo" id="p0" onclick="abrirReto(0)">0</div>
+    <div class="punto-interactivo" id="p1" onclick="abrirReto(1)">1</div>
+    <div class="punto-interactivo" id="p2" onclick="abrirReto(2)">2</div>
+    <div class="punto-interactivo" id="p3" onclick="abrirReto(3)">3</div>
+    <div class="punto-interactivo" id="p4" onclick="abrirReto(4)">4</div>
 </div>
 
-<footer class="footer-creditos">
+<div class="overlay" id="overlay" onclick="cerrarReto()"></div>
+
+<div id="modal-juego">
+    <h2 id="titulo-reto" style="color: var(--purpura); margin-top: 0;"></h2>
+    <div id="chat-tutor" style="background: #f8f9fa; padding: 20px; border-radius: 15px; border-left: 5px solid var(--purpura); margin: 20px 0;">
+        <p id="texto-ia" style="margin: 0; font-size: 1.1rem;"></p>
+    </div>
+    <input type="text" id="input-resp" placeholder="Escribe tu respuesta..." style="width: 70%; padding: 12px; border-radius: 10px; border: 1px solid #ddd;">
+    <button onclick="enviar()" style="padding: 12px 25px; background: var(--purpura); color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">ENVIAR →</button>
+    <button onclick="cerrarReto()" style="background: none; border: none; color: #999; cursor: pointer; margin-left: 10px;">Cerrar</button>
+</div>
+
+<footer>
     <div class="nombre-autor">Jorge Armando Jaramillo Bravo</div>
-    
-    <div class="titulos-academicos">
-        <div class="titulo-item"><span class="icon-acad">⚛️</span> Licenciado en matemáticas y física (UdeA)</div>
-        <div class="titulo-item"><span class="icon-acad">♉</span> Magister en enseñanza de las ciencias exactas y naturales (UNAL)</div>
-        <div class="titulo-item"><span class="icon-acad">🎓</span> Doctorante en Educación (UTEL)</div>
-    </div>
-
-    <div style="font-size: 0.85rem; color: #5f6368;">
-        <strong>Colaboradores:</strong> Didier Garcia y Didier Durango | IE Josefa Campos
-    </div>
-
-    <div class="logo-lab">
-        © 2026 - LABORATORIO INTERACTIVO JOSEFA CAMPOS
-    </div>
+    <p style="font-size: 0.8rem; color: #777;">
+        ⚛️ Lic. Matemáticas y Física (UdeA) | ♉ Magister (UNAL) | 🎓 Doctorando (UTEL)<br>
+        Colaboradores: Didier Garcia y Didier Durango | IE Josefa Campos
+    </p>
+    <div style="font-weight: bold; color: #81c784; margin-top: 10px;">© 2026 - LABORATORIO INTERACTIVO JOSEFA CAMPOS</div>
 </footer>
+
+<script>
+    function abrirReto(n) {
+        const retos = [
+            "CAPÍTULO 0: EL HOGAR - Ordena tus objetos.",
+            "CAPÍTULO 1: SUPERMERCADO - Orden horizontal.",
+            "CAPÍTULO 2: EL EDIFICIO - ¿Quién vive arriba?",
+            "CAPÍTULO 3: LA PANADERÍA - La mesa redonda.",
+            "CAPÍTULO 4: TIENDA DE MODA - Lógica Matricial."
+        ];
+        document.getElementById('titulo-reto').innerText = retos[n];
+        document.getElementById('texto-ia').innerText = "¡Hola! Soy Amani. Para este reto de la unidad " + n + ", necesito que apliques tu lógica.";
+        document.getElementById('modal-juego').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+    }
+
+    function cerrarReto() {
+        document.getElementById('modal-juego').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
+
+    function enviar() {
+        alert("Enviando a Gemini para evaluación...");
+        cerrarReto();
+    }
+</script>
 
 </body>
 </html>
