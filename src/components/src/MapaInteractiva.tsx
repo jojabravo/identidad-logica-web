@@ -6,79 +6,31 @@ import { bancoRetos } from '../data/bancoRetos';
 import { Reto } from '../types';
 
 const MapaInteractiva: React.FC = () => {
-  // Estado para controlar qué reto está abierto
   const [retoActivo, setRetoActivo] = useState<Reto | null>(null);
 
-  // Función para abrir un reto específico
   const abrirReto = (idReto: number) => {
     const retoEncontrado = bancoRetos.find(r => r.id === idReto);
-    if (retoEncontrado) {
-      setRetoActivo(retoEncontrado);
-    }
+    if (retoEncontrado) setRetoActivo(retoEncontrado);
   };
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto rounded-[32px] overflow-hidden shadow-2xl border-4 border-gray-100">
+    <div className="relative w-full max-w-[600px] mx-auto rounded-[40px] overflow-hidden shadow-2xl border-8 border-white">
       
-      {/* Imagen Base del Mapa (calle-barrio.jpg) */}
+      {/* Tu imagen base de assets */}
       <img 
-        src="assets/calle-barrio.jpg" 
-        alt="Mapa del Barrio de Identidad Lógica" 
-        className="w-full h-auto object-cover"
+        src="assets/Escenario0.jpg" 
+        alt="Mapa Interactivo" 
+        className="w-full h-auto block"
       />
 
-      {/* --- UBICACIÓN DE LOS PUNTOS INTERACTIVOS (ANIMADOS) --- */}
-      {/* He estimado las posiciones basándome en tu imagen. 
-        Ajusta los valores 'top' y 'left' si es necesario.
-      */}
-      
-      {/* Punto 0: JuegoCasa */}
-      <MapaMarker 
-        numero={0} 
-        label="HOME" 
-        top="10%" // Ajusta según la casa en tu imagen
-        left="15%"
-        onClick={() => abrirReto(0)}
-      />
+      {/* ICONOS ANIMADOS (Coordenadas ajustadas a tu imagen) */}
+      <MapaMarker numero={0} label="HOGAR" top="7%" left="17%" onClick={() => abrirReto(0)} />
+      <MapaMarker numero={1} label="SUPER" top="36%" left="44%" onClick={() => abrirReto(1)} />
+      <MapaMarker numero={2} label="EDIFICIO" top="61%" left="93%" onClick={() => abrirReto(2)} />
+      <MapaMarker numero={3} label="PAN" top="73%" left="14%" onClick={() => abrirReto(3)} />
+      <MapaMarker numero={4} label="TIENDA" top="61%" left="60%" onClick={() => abrirReto(4)} />
 
-      {/* Punto 1: Supermercado */}
-      <MapaMarker 
-        numero={1} 
-        label="SHOP" 
-        top="42%" 
-        left="43%"
-        onClick={() => abrirReto(1)}
-      />
-
-      {/* Punto 2: El Edificio */}
-      <MapaMarker 
-        numero={2} 
-        label="BUILDING" 
-        top="58%" 
-        left="88%"
-        onClick={() => abrirReto(2)}
-      />
-
-      {/* Punto 3: La Panadería */}
-      <MapaMarker 
-        numero={3} 
-        label="BAKERY" 
-        top="88%" 
-        left="12%"
-        onClick={() => abrirReto(3)}
-      />
-
-      {/* Punto 4: La Tienda (Boutique) */}
-      <MapaMarker 
-        numero={4} 
-        label="BOUTIQUE" 
-        top="75%" 
-        left="61%"
-        onClick={() => abrirReto(4)}
-      />
-
-      {/* --- PANEL DE COMUNICACIÓN (MODAL) --- */}
-      {/* Se abre solo si hay un reto activo en el estado */}
+      {/* Modal que muestra el reto al hacer clic */}
       {retoActivo && (
         <CommunicationPanel 
           reto={retoActivo} 
