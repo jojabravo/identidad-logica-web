@@ -52,6 +52,29 @@
             <div class="punto-nivel" id="lvl4" onclick="abrirNivel(4)">4</div>
         </main>
 
+        <div id="modal-oscurecer" class="overlay" onclick="cerrarReto()"></div>
+<div id="ventana-reto" class="modal-tarjeta">
+    <div class="modal-header">
+        <h2 id="modal-titulo">Capítulo</h2>
+        <button class="btn-nav btn-salir" onclick="cerrarReto()">X</button>
+    </div>
+    <div class="modal-cuerpo">
+        <div class="escenario-visual">
+            <img id="modal-img" src="" alt="Escenario">
+        </div>
+        <div class="chat-contenedor">
+            <div class="burbuja-tutor">
+                <strong id="modal-personajes">Personajes</strong>
+                <p id="modal-mensaje">Instrucciones del reto...</p>
+            </div>
+            <div class="input-grupo">
+                <input type="text" id="user-respuesta" placeholder="Escribe tu lógica aquí...">
+                <button class="btn-primario" onclick="validarRespuesta()">ENVIAR →</button>
+            </div>
+        </div>
+    </div>
+</div>
+        
         <footer class="creditos-finales">
             <div class="nombre-autor">Jorge Armando Jaramillo Bravo</div>
             <div class="titulos-academicos">
