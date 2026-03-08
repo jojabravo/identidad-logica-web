@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lógica 6º/7º | Josefa Campos</title>
-    <link rel="stylesheet" href="style.css">
-</head>
 <body>
 
     <div id="pantalla-login">
@@ -44,74 +36,54 @@
         </nav>
 
         <div class="contenedor-mapa">
-    <img src="assets/calle-barrio.png" class="img-mapa" alt="Mapa del Barrio">
-
-    <div class="punto-nivel pin-0" onclick="abrirNivel(0)">0</div>
-    <div class="punto-nivel pin-1" onclick="abrirNivel(1)">1</div>
-    <div class="punto-nivel pin-2" onclick="abrirNivel(2)">2</div>
-    <div class="punto-nivel pin-3" onclick="abrirNivel(3)">3</div>
-    <div class="punto-nivel pin-4" onclick="abrirNivel(4)">4</div>
-</div>
+            <img src="assets/calle-barrio.png" class="img-mapa" alt="Mapa del Barrio">
+            <div class="punto-nivel pin-0" onclick="abrirNivel(0)">0</div>
+            <div class="punto-nivel pin-1" onclick="abrirNivel(1)">1</div>
+            <div class="punto-nivel pin-2" onclick="abrirNivel(2)">2</div>
+            <div class="punto-nivel pin-3" onclick="abrirNivel(3)">3</div>
+            <div class="punto-nivel pin-4" onclick="abrirNivel(4)">4</div>
+        </div>
 
         <div id="modal-oscurecer" class="overlay" onclick="cerrarReto()"></div>
-<div id="ventana-reto" class="modal-tarjeta">
-    <div class="modal-header">
-        <h2 id="modal-titulo">Capítulo</h2>
-        <button class="btn-nav btn-salir" onclick="cerrarReto()">X</button>
-    </div>
-   <div class="modal-cuerpo">
-    <div class="escenario-visual" style="position: relative;">
-        <img id="modal-img" src="" alt="Escenario">
-        <div id="slot-5" style="position: absolute; top: 12%; left: 45%; width: 50px; height: 50px;"></div>
-        <div id="slot-4" style="position: absolute; top: 28%; left: 45%; width: 50px; height: 50px;"></div>
-        <div id="slot-3" style="position: absolute; top: 44%; left: 45%; width: 50px; height: 50px;"></div>
-        <div id="slot-2" style="position: absolute; top: 60%; left: 45%; width: 50px; height: 50px;"></div>
-        <div id="slot-1" style="position: absolute; top: 76%; left: 45%; width: 50px; height: 50px;"></div>
-    </div>
-
-    <div id="galeria-objetos" style="display: none; justify-content: center; align-items: center; gap: 15px; padding: 10px; background: #f3e5f5; border-radius: 20px;">
-        <img src="assets/portatil.png" onclick="moverAlEstante('portatil')" style="width:50px; cursor:pointer;">
-        <img src="assets/reloj.png" onclick="moverAlEstante('reloj')" style="width:50px; cursor:pointer;">
-        <img src="assets/pelicula.png" onclick="moverAlEstante('pelicula')" style="width:50px; cursor:pointer;">
-        <img src="assets/tablet.png" onclick="moverAlEstante('tablet')" style="width:50px; cursor:pointer;">
-        <img src="assets/control.png" onclick="moverAlEstante('control')" style="width:50px; cursor:pointer;">
-        <button onclick="reiniciarReto()" style="background: #e0e0e0; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 20px;">🔄</button>
-    </div>
-
-    <div class="chat-contenedor">
-        <div class="burbuja-tutor">
-            <strong id="modal-personajes">Tutores</strong>
-            <p id="modal-mensaje">Instrucciones...</p>
-        </div>
-        <div class="input-grupo">
-            <input type="text" id="user-respuesta" placeholder="Tu orden aparecerá aquí..." readonly>
-            <button class="btn-primario" onclick="validarRespuesta()">VALIDAR ORDEN →</button>
-        </div>
-    </div>
-</div>
-
-    <div id="galeria-objetos" class="objetos-galeria" style="display: none; justify-content: center; gap: 10px; padding: 10px; background: #f3e5f5; border-radius: 20px;">
-        <img src="assets/portatil.png" class="obj-click" onclick="moverAlEstante('portatil')" width="50">
-        <img src="assets/reloj.png" class="obj-click" onclick="moverAlEstante('reloj')" width="50">
-        <img src="assets/pelicula.png" class="obj-click" onclick="moverAlEstante('pelicula')" width="50">
-        <img src="assets/tablet.png" class="obj-click" onclick="moverAlEstante('tablet')" width="50">
-        <img src="assets/control.png" class="obj-click" onclick="moverAlEstante('control')" width="50">
-    </div>
-
-    <div class="chat-contenedor">
-        <div class="burbuja-tutor">
-            <strong id="modal-personajes">Personajes</strong>
-            <p id="modal-mensaje">Instrucciones del reto...</p>
-        </div>
-        <div class="input-grupo">
-            <input type="text" id="user-respuesta" placeholder="Orden: 1, 2, 3..." readonly>
-            <button class="btn-primario" onclick="validarRespuesta()">VALIDAR ORDEN →</button>
-            <button class="btn-nav btn-salir" onclick="reiniciarReto0()" style="background:#eee; color:#333;">🔄</button>
-        </div>
-    </div>
-</div>
-</div>
         
+        <div id="ventana-reto" class="modal-tarjeta">
+            <div class="modal-header">
+                <h2 id="modal-titulo">Capítulo</h2>
+                <button class="btn-nav btn-salir" onclick="cerrarReto()">X</button>
+            </div>
+            
+            <div class="modal-cuerpo">
+                <div class="escenario-visual" style="position: relative;">
+                    <img id="modal-img" src="" alt="Escenario">
+                    <div id="slot-5" style="position: absolute; top: 12%; left: 45%; width: 50px; height: 50px;"></div>
+                    <div id="slot-4" style="position: absolute; top: 28%; left: 45%; width: 50px; height: 50px;"></div>
+                    <div id="slot-3" style="position: absolute; top: 44%; left: 45%; width: 50px; height: 50px;"></div>
+                    <div id="slot-2" style="position: absolute; top: 60%; left: 45%; width: 50px; height: 50px;"></div>
+                    <div id="slot-1" style="position: absolute; top: 76%; left: 45%; width: 50px; height: 50px;"></div>
+                </div>
+
+                <div id="galeria-objetos" style="display: none; justify-content: center; align-items: center; gap: 15px; padding: 10px; background: #f3e5f5; border-radius: 20px;">
+                    <img src="assets/portatil.png" onclick="moverAlEstante('portatil')" style="width:50px; cursor:pointer;" title="Portátil">
+                    <img src="assets/reloj.png" onclick="moverAlEstante('reloj')" style="width:50px; cursor:pointer;" title="Reloj">
+                    <img src="assets/pelicula.png" onclick="moverAlEstante('pelicula')" style="width:50px; cursor:pointer;" title="Película">
+                    <img src="assets/tablet.png" onclick="moverAlEstante('tablet')" style="width:50px; cursor:pointer;" title="Tablet">
+                    <img src="assets/control.png" onclick="moverAlEstante('control')" style="width:50px; cursor:pointer;" title="Control">
+                    <button onclick="reiniciarReto()" class="btn-reinicio" style="background: #e0e0e0; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center;">🔄</button>
+                </div>
+
+                <div class="chat-contenedor">
+                    <div class="burbuja-tutor">
+                        <strong id="modal-personajes">Tutores</strong>
+                        <p id="modal-mensaje">Instrucciones...</p>
+                    </div>
+                    <div class="input-grupo">
+                        <input type="text" id="user-respuesta" placeholder="Tu orden aparecerá aquí..." readonly>
+                        <button class="btn-primario" onclick="validarRespuesta()">VALIDAR ORDEN →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <footer class="creditos-finales">
             <div class="nombre-autor">Jorge Armando Jaramillo Bravo</div>
             <div class="titulos-academicos">
@@ -130,4 +102,3 @@
 
     <script src="script.js"></script>
 </body>
-</html>
