@@ -1,67 +1,96 @@
-// Base de datos de los retos lógicos
+// ==========================================
+// BASE DE DATOS DE RETOS (Sincronizada con Guion)
+// ==========================================
 const niveles = [
     { 
         id: 0, 
         titulo: "CAPÍTULO 0: EL HOGAR", 
-        mensaje: "¡Hola! Soy Amani. Para empezar, organiza los 5 objetos de tu habitación de arriba hacia abajo. Recuerda: el portátil es lo más alto y el control lo más bajo.",
+        tutores: "Sacha y Mateo",
+        mensaje: "¡Hola! Somos Sacha y Mateo. Antes de salir al barrio, necesitamos poner orden en casa. El portátil va en lo más alto y el control en el nivel más bajo. ¿Cuál es el orden de arriba hacia abajo?",
+        pista: "Recuerda: El portátil es lo más alto por seguridad.",
+        clave: ["portatil", "reloj", "pelicula", "tablet", "control"],
         imagen: "assets/Escenario0.png" 
     },
     { 
         id: 1, 
         titulo: "CAPÍTULO 1: SUPERMERCADO", 
-        mensaje: "¡Bienvenidos al Súper! Soy Mateo. Debemos organizar los productos de izquierda a derecha. ¡Y no olvides atrapar las gotas de agua!",
+        tutores: "Sacha y Mateo",
+        mensaje: "¡Bienvenidos al Súper! Debemos organizar los productos de izquierda a derecha: el Café está a la izquierda del Pan y la Leche a la derecha del Pan. ¡Atrapa las gotas!",
+        pista: "El Café es el primero de la izquierda.",
+        clave: ["cafe", "pan", "leche", "huevos"],
         imagen: "assets/Escenario1.png" 
     },
     { 
         id: 2, 
         titulo: "CAPÍTULO 2: EL EDIFICIO", 
-        mensaje: "Soy Sacha. Ayúdanos a ubicar a los 5 vecinos en sus pisos correspondientes. Dora vive en el piso más alto.",
+        tutores: "Sacha y Mateo",
+        mensaje: "Ayúdanos a ubicar a los vecinos: Dora vive en el piso más alto (5) y Beto dos pisos más abajo. ¿Cuál es el orden?",
+        pista: "Dora está en el 5, cuenta dos hacia abajo para Beto.",
+        clave: ["dora", "ana", "beto", "elena", "carlos"],
         imagen: "assets/Escenario2.3.png" 
     },
     { 
         id: 3, 
         titulo: "CAPÍTULO 3: LA PANADERÍA", 
-        mensaje: "¡Uyyy, qué susto! Soy Elena. Antes de organizar la mesa redonda, confirma que ya espantaste a los 10 ratones.",
+        tutores: "Elena y Kenji",
+        mensaje: "¡Uyyy, qué susto! Primero espanta los 10 ratones. Luego sienta a Juan frente a Rosa y a Luis a la derecha de Juan.",
+        pista: "Piensa en círculo y usa la rotación mental.",
+        clave: ["juan", "sofia", "pedro", "rosa", "andres", "luis"],
         imagen: "assets/Escenario3.png" 
     },
     { 
         id: 4, 
         titulo: "CAPÍTULO 4: TIENDA DE MODA", 
-        mensaje: "Soy Thiago. Este es el reto final de lógica matricial. Usa la tabla para asignar la prenda correcta a cada cliente.",
+        tutores: "Lucía y Thiago",
+        mensaje: "Reto final de lógica matricial. Daniela no pidió el Jean y Carla pidió la Blusa. ¡Usa la tabla!",
+        pista: "Si Carla tiene la blusa, Daniela debe tener la camisa.",
+        clave: ["carla", "daniela", "eliana"],
         imagen: "assets/Escenario4.png" 
     }
 ];
 
-// Variables de estado del estudiante
+// ==========================================
+// VARIABLES DE ESTADO
+// ==========================================
 let monedas = 0;
 let nivelesCompletados = 0;
+let nivelActualId = null;
 
-// Función de Inicio de Sesión
+// ==========================================
+// FUNCIONES DE NAVEGACIÓN E INTERFAZ
+// ==========================================
+
+// Iniciar Sesión
 function login() {
     const nombre = document.getElementById('user-name').value;
     if (nombre.trim() !== "") {
         document.getElementById('display-name').innerText = nombre.toUpperCase();
         document.getElementById('pantalla-login').style.display = 'none';
         document.getElementById('interfaz-juego').style.display = 'block';
-        console.log("Sesión iniciada: " + nombre);
+        console.log("Sesión iniciada para: " + nombre);
     } else {
         alert("Por favor, ingresa tu nombre completo para el Laboratorio.");
     }
 }
 
-// Función para abrir los retos desde el mapa
+// Abrir el Reto (Solucionando el error de "undefined")
 function abrirNivel(id) {
-    const nivel = niveles[id]; // Usamos la base de datos de 8 personajes
+    nivelActualId = id;
+    const nivel = niveles.find(n => n.id === id);
     
-    // Llenar la ventana con la información
-    document.getElementById('modal-titulo').innerText = nivel.t;
-    document.getElementById('modal-personajes').innerText = "TUTORES: " + nivel.p;
-    document.getElementById('modal-mensaje').innerText = nivel.m;
-    document.getElementById('modal-img').src = nivel.imagen;
-    
-    // Mostrar la ventana
-    document.getElementById('modal-oscurecer').style.display = 'block';
-    document.getElementById('ventana-reto').style.display = 'block';
+    if (nivel) {
+        document.getElementById('modal-titulo').innerText = nivel.titulo;
+        document.getElementById('modal-personajes').innerText = "TUTORES: " + nivel.tutores;
+        document.getElementById('modal-mensaje').innerText = nivel.mensaje;
+        document.getElementById('modal-img').src = nivel.imagen;
+        
+        // Limpiar el campo de respuesta previo
+        document.getElementById('user-respuesta').value = "";
+        
+        // Mostrar Modal
+        document.getElementById('modal-oscurecer').style.display = 'block';
+        document.getElementById('ventana-reto').style.display = 'block';
+    }
 }
 
 function cerrarReto() {
@@ -69,24 +98,40 @@ function cerrarReto() {
     document.getElementById('ventana-reto').style.display = 'none';
 }
 
+// ==========================================
+// MOTOR LÓGICO Y EVALUACIÓN
+// ==========================================
+
 function validarRespuesta() {
-    const resp = document.getElementById('user-respuesta').value;
-    if(resp.trim() !== "") {
-        // Aquí conectaremos la API de Gemini
-        alert("¡Recibido! El Profe Jorge y la IA están evaluando tu lógica...");
-        ganarPuntos(20); // Sumamos monedas y progreso visual
+    const respuestaUsuario = document.getElementById('user-respuesta').value.toLowerCase();
+    const nivel = niveles.find(n => n.id === nivelActualId);
+
+    if (respuestaUsuario.trim() === "") {
+        alert("¡No dejes el espacio vacío! Tus tutores esperan tu lógica.");
+        return;
+    }
+
+    // Validación básica: comprobamos si las palabras clave están en la respuesta
+    const esCorrecto = nivel.clave.every(palabra => respuestaUsuario.includes(palabra));
+
+    if (esCorrecto) {
+        alert("¡Increíble! ¡Todo está en su lugar! Lo que se vive, se enseña.");
+        actualizarMarcadores(50); // Premio de 50 monedas por reto
         cerrarReto();
+    } else {
+        // Andamiaje Pedagógico (Feedback formativo)
+        alert("Mmm, algo no cuadra... Pista de los tutores: " + nivel.pista);
     }
 }
-// Función para actualizar monedas y barra de progreso
-function actualizarMarcadores(puntos) {
-    monedas += puntos;
+
+function actualizarMarcadores(puntosAdicionales) {
+    monedas += puntosAdicionales;
     nivelesCompletados += 1;
     
-    // Actualizar texto de monedas
+    // Actualizar UI de monedas
     document.getElementById('puntos-actuales').innerText = monedas;
     
-    // Actualizar barra de progreso (dividido entre 5 niveles totales)
+    // Actualizar Barra de Progreso
     const porcentaje = (nivelesCompletados / 5) * 100;
     const barra = document.getElementById('progreso-visual');
     if (barra) {
