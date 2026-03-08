@@ -103,27 +103,35 @@ function cerrarReto() {
 // ==========================================
 
 function validarRespuesta() {
-    const respuestaUsuario = document.getElementById('user-respuesta').value.toLowerCase();
-    const nivel = niveles.find(n => n.id === nivelActualId);
-
-    if (respuestaUsuario.trim() === "") {
-        alert("¡No dejes el espacio vacío! Tus tutores esperan tu lógica.");
+    // 1. Definimos el orden correcto exacto de arriba (Nivel 5) hacia abajo (Nivel 1)
+    const claveCorrecta = ["portatil", "reloj", "pelicula", "tablet", "control"];
+    
+    // 2. Verificamos si el estudiante completó los 5 espacios
+    if (ordenEstante.length < 5) {
+        alert("¡Aún faltan objetos en el estante! Sacha y Mateo necesitan que ubiques los 5.");
         return;
     }
 
-    // Validación básica: comprobamos si las palabras clave están en la respuesta
-    const esCorrecto = nivel.clave.every(palabra => respuestaUsuario.includes(palabra));
+    // 3. Comparamos el orden del estudiante con la clave
+    let esCorrecto = true;
+    for (let i = 0; i < claveCorrecta.length; i++) {
+        if (ordenEstante[i] !== claveCorrecta[i]) {
+            esCorrecto = false;
+            break;
+        }
+    }
 
     if (esCorrecto) {
+        // MENSAJE DE TRIUNFO (Alineado con el guion)
         alert("¡Increíble! ¡Todo está en su lugar! Lo que se vive, se enseña.");
-        actualizarMarcadores(50); // Premio de 50 monedas por reto
+        actualizarMarcadores(50); // Sumamos monedas por acierto lógico
         cerrarReto();
     } else {
-        // Andamiaje Pedagógico (Feedback formativo)
-        alert("Mmm, algo no cuadra... Pista de los tutores: " + nivel.pista);
+        // ANDAMIAJE PEDAGÓGICO (Feedback formativo si falla)
+        alert("Mmm, algo no cuadra en el orden. Mateo dice: 'Recuerda que el portátil es lo más alto por seguridad'. ¡Inténtalo de nuevo!");
+        reiniciarEstante(); // Limpiamos para que reflexione y lo intente otra vez
     }
 }
-
 function actualizarMarcadores(puntosAdicionales) {
     monedas += puntosAdicionales;
     nivelesCompletados += 1;
