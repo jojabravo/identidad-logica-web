@@ -4,31 +4,31 @@ const niveles = [
         id: 0, 
         titulo: "CAPÍTULO 0: EL HOGAR", 
         mensaje: "¡Hola! Soy Amani. Para empezar, organiza los 5 objetos de tu habitación de arriba hacia abajo. Recuerda: el portátil es lo más alto y el control lo más bajo.",
-        imagen: "assets/calle-barrio.jpg" 
+        imagen: "assets/Escenario0.png" 
     },
     { 
         id: 1, 
         titulo: "CAPÍTULO 1: SUPERMERCADO", 
         mensaje: "¡Bienvenidos al Súper! Soy Mateo. Debemos organizar los productos de izquierda a derecha. ¡Y no olvides atrapar las gotas de agua!",
-        imagen: "assets/supermercado.png" 
+        imagen: "assets/Escenario1.png" 
     },
     { 
         id: 2, 
         titulo: "CAPÍTULO 2: EL EDIFICIO", 
         mensaje: "Soy Sacha. Ayúdanos a ubicar a los 5 vecinos en sus pisos correspondientes. Dora vive en el piso más alto.",
-        imagen: "assets/edificio.png" 
+        imagen: "assets/Escenario2.3.png" 
     },
     { 
         id: 3, 
         titulo: "CAPÍTULO 3: LA PANADERÍA", 
         mensaje: "¡Uyyy, qué susto! Soy Elena. Antes de organizar la mesa redonda, confirma que ya espantaste a los 10 ratones.",
-        imagen: "assets/panaderia.png" 
+        imagen: "assets/Escenario3.png" 
     },
     { 
         id: 4, 
         titulo: "CAPÍTULO 4: TIENDA DE MODA", 
         mensaje: "Soy Thiago. Este es el reto final de lógica matricial. Usa la tabla para asignar la prenda correcta a cada cliente.",
-        imagen: "assets/tienda.png" 
+        imagen: "assets/Escenario4.png" 
     }
 ];
 
