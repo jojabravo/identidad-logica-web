@@ -3,183 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Identidad Lógica | Proyecto Doctoral</title>
+    <title>Módulo de Pensamiento Lógico | Identidad Lógica</title>
     <style>
         :root {
-            --verde-principal: #2e7d32;
-            --azul-fondo: #e3f2fd;
-            --blanco: #ffffff;
-            --dorado: #fbc02d;
+            --verde-laboratorio: #1b5e20;
+            --azul-modulo: #0277bd;
+            --fondo-claro: #fafafa;
+            --borde-tarjeta: #e0e0e0;
         }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: var(--azul-fondo);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--fondo-claro);
             margin: 0;
-            text-align: center;
+            line-height: 1.6;
         }
 
-        /* Cabecera */
+        /* Encabezado Estilo Módulo */
         header {
-            background-color: var(--verde-principal);
+            background-color: var(--verde-laboratorio);
             color: white;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            padding: 30px 15px;
+            text-align: center;
+            border-bottom: 5px solid var(--dorado);
         }
 
-        #marcador {
+        .contenedor-principal {
+            max-width: 1000px;
+            margin: 20px auto;
             background: white;
-            color: var(--verde-principal);
-            padding: 10px 20px;
-            border-radius: 20px;
-            display: inline-block;
-            font-weight: bold;
-            margin-top: 10px;
+            border: 1px solid var(--borde-tarjeta);
+            border-radius: 8px;
+            padding: 25px;
         }
 
-        /* Contenedor Principal */
-        #pantalla-juego {
-            max-width: 900px;
-            margin: 30px auto;
+        /* Estilo de Botones del Mapa Interactivo */
+        .mapa-navegacion {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .item-nivel {
             background: white;
-            padding: 20px;
-            border-radius: 15px;
-            min-height: 400px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        /* Estilo de los Botones del Mapa */
-        .grid-niveles {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .boton-nivel {
-            padding: 30px;
-            background: #f8f9fa;
-            border: 2px solid var(--verde-principal);
-            border-radius: 15px;
-            cursor: pointer;
+            border: 2px solid var(--azul-modulo);
+            padding: 15px 25px;
+            border-radius: 50px;
+            color: var(--azul-modulo);
             font-weight: bold;
+            text-decoration: none;
             transition: 0.3s;
         }
 
-        .boton-nivel:hover {
-            transform: scale(1.05);
-            background: var(--verde-principal);
+        .item-nivel:hover {
+            background: var(--azul-modulo);
             color: white;
         }
 
-        /* Área de Chat con la IA */
-        #zona-interaccion {
-            display: none; /* Se activa al elegir nivel */
-            margin-top: 20px;
-        }
-
-        #chat-ia {
-            background: #eee;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            text-align: left;
-        }
-
-        input[type="text"] {
-            width: 70%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        button#enviar {
-            padding: 10px 20px;
-            background: var(--verde-principal);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /* Pie de página */
+        /* Footer con Créditos Específicos */
         footer {
-            background: #333;
-            color: white;
-            padding: 20px;
-            margin-top: 40px;
+            background: #263238;
+            color: #eceff1;
+            padding: 30px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .copyright {
+            font-weight: bold;
+            color: #81c784;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Identidad Lógica: El Poder de ser Yo</h1>
-    <p>Investigación Doctoral - Jorge A. Jaramillo Bravo</p>
-    <div id="marcador">💰 Monedas: <span id="puntos">0</span></div>
+    <h1>Módulo de Pensamiento Lógico</h1>
+    <h3>Identidad Lógica: El Poder de ser Yo</h3>
 </header>
 
-<main id="pantalla-juego">
-    <div id="menu-principal">
-        <h2>Mapa del Barrio</h2>
-        <p>Selecciona un lugar para comenzar el desafío:</p>
-        <div class="grid-niveles">
-            <div class="boton-nivel" onclick="cargarNivel(0)">🏠 0. La Casa</div>
-            <div class="boton-nivel" onclick="cargarNivel(1)">🛒 1. Supermercado</div>
-            <div class="boton-nivel" onclick="cargarNivel(2)">🏢 2. El Edificio</div>
-            <div class="boton-nivel" onclick="cargarNivel(3)">🥖 3. La Panadería</div>
-            <div class="boton-nivel" onclick="cargarNivel(4)">👕 4. Tienda de Moda</div>
-        </div>
-    </div>
-
-    <div id="zona-interaccion">
-        <h2 id="titulo-escenario"></h2>
-        <div id="chat-ia">
-            <strong>Amani:</strong> <span id="mensaje-ia">¡Hola! ¿Estás listo para este reto?</span>
-        </div>
-        <input type="text" id="respuesta-usuario" placeholder="Escribe tu respuesta aquí...">
-        <button id="enviar" onclick="enviarRespuesta()">Enviar</button>
-        <br><br>
-        <button onclick="volverMenu()">⬅ Volver al Mapa</button>
-    </div>
-</main>
+<div class="contenedor-principal">
+    <section id="bienvenida">
+        <h2>Bienvenido al Laboratorio Interactivo</h2>
+        <p>Selecciona una unidad temática en el mapa para iniciar tu proceso de aprendizaje:</p>
+        
+        <nav class="mapa-navegacion">
+            <a href="#" class="item-nivel">U0. La Casa</a>
+            <a href="#" class="item-nivel">U1. Supermercado</a>
+            <a href="#" class="item-nivel">U2. El Edificio</a>
+            <a href="#" class="item-nivel">U3. La Panadería</a>
+            <a href="#" class="item-nivel">U4. Tienda de Moda</a>
+        </nav>
+    </section>
+</div>
 
 <footer>
     <p><strong>Créditos Académicos:</strong></p>
     <p>Lic. Matemáticas y Física (UdeA) | Magister (UNAL) | Doctorando (UTEL)</p>
-    <p>Colaboradores: Didier Durango y Carmelo Hernández | IE Josefa Campos</p>
+    <p>Colaboradores: Didier Garcia y Didier Durango | IE Josefa Campos</p>
+    <p class="copyright">© 2026 - LABORATORIO INTERACTIVO JOSEFA CAMPOS</p>
 </footer>
-
-<script>
-    let monedas = 0;
-
-    function cargarNivel(id) {
-        document.getElementById('menu-principal').style.display = 'none';
-        document.getElementById('zona-interaccion').style.display = 'block';
-        
-        const titulos = [
-            "Escenario 0: Orden en Casa",
-            "Escenario 1: El Supermercado",
-            "Escenario 2: El Edificio",
-            "Escenario 3: La Panadería",
-            "Escenario 4: Tienda de Moda (Matricial)"
-        ];
-        
-        document.getElementById('titulo-escenario').innerText = titulos[id];
-        document.getElementById('mensaje-ia').innerText = "Has llegado al lugar. ¿Puedes resolver el acertijo lógico?";
-    }
-
-    function volverMenu() {
-        document.getElementById('menu-principal').style.display = 'block';
-        document.getElementById('zona-interaccion').style.display = 'none';
-    }
-
-    function enviarRespuesta() {
-        // Aquí conectaremos la API de Gemini próximamente
-        alert("Respuesta enviada. ¡Pronto conectaremos el cerebro de IA para evaluarte!");
-        document.getElementById('respuesta-usuario').value = "";
-    }
-</script>
 
 </body>
 </html>
