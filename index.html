@@ -3,35 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Identidad Lógica - IE Josefa Campos</title>
+    <title>Identidad Lógica | IE Josefa Campos</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; }
-        header { background-color: #4CAF50; color: white; padding: 1em; }
-        #contador-monedas { font-size: 1.2em; font-weight: bold; margin-top: 10px; }
-        #mapa-container { max-width: 800px; margin: 20px auto; border: 2px solid #ccc; padding: 20px; background-color: white; }
-        .boton-mapa { display: inline-block; padding: 10px 20px; margin: 10px; background-color: #2196F3; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
-        .boton-mapa:hover { background-color: #0b7dda; }
+        /* Paleta de colores inspirada en la IE Josefa Campos y Flat Design */
+        :root {
+            --verde-institucional: #2e7d32;
+            --azul-claro: #e3f2fd;
+            --azul-botones: #1976d2;
+            --dorado-moneda: #fbc02d;
+            --blanco: #ffffff;
+            --gris-suave: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--azul-claro);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Encabezado Profesional */
+        header {
+            background-color: var(--verde-institucional);
+            color: var(--blanco);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* Marcador de Monedas Estilizado */
+        #contador-monedas {
+            display: inline-block;
+            background: var(--blanco);
+            color: var(--verde-institucional);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-top: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Contenedor del Mapa */
+        #mapa-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: var(--blanco);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        #mapa-container h2 {
+            color: var(--azul-botones);
+            margin-bottom: 25px;
+        }
+
+        /* Botones Interactivos del Mapa */
+        .botones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .boton-mapa {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: var(--gris-suave);
+            color: var(--azul-botones);
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: bold;
+            border: 2px solid var(--azul-botones);
+            transition: all 0.3s ease;
+        }
+
+        .boton-mapa:hover {
+            background-color: var(--azul-botones);
+            color: var(--blanco);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(25, 118, 210, 0.3);
+        }
+
+        /* Pie de página con créditos académicos */
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background: #333;
+            color: #ccc;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .creditos-universidades {
+            font-style: italic;
+            color: var(--blanco);
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Identidad Lógica: El Poder de ser Yo</h1>
-    <p>Magister Jorge Jaramillo Bravo - Tesis Doctoral</p>
-    <div id="contador-monedas">💰 Monedas: 0</div>
+    <h1>Identidad Lógica</h1>
+    <p>El Poder de ser Yo</p>
+    <div id="contador-monedas">💰 <span id="puntos">0</span> Monedas</div>
 </header>
 
 <main id="mapa-container">
-    <h2>Mapa del Barrio (Niveles)</h2>
-    <a href="#" class="boton-mapa" id="nivel-0">Casa (0)</a>
-    <a href="#" class="boton-mapa" id="nivel-1">Súper (1)</a>
-    <a href="#" class="boton-mapa" id="nivel-2">Edificio (2)</a>
-    <a href="#" class="boton-mapa" id="nivel-3">Panadería (3)</a>
-    <a href="#" class="boton-mapa" id="nivel-4">Tienda (4)</a>
+    <h2>Mapa de Desafíos</h2>
+    <p>Haz clic en un escenario para comenzar tu aventura lúdica.</p>
+    
+    <div class="botones-grid">
+        <a href="#" class="boton-mapa" id="nivel-0">🏠 0. La Casa</a>
+        <a href="#" class="boton-mapa" id="nivel-1">🛒 1. Supermercado</a>
+        <a href="#" class="boton-mapa" id="nivel-2">🏢 2. El Edificio</a>
+        <a href="#" class="boton-mapa" id="nivel-3">🥖 3. La Panadería</a>
+        <a href="#" class="boton-mapa" id="nivel-4">👕 4. Tienda de Moda</a>
+    </div>
 </main>
 
 <footer>
-    <p>© 2024 Proyecto de Investigación UTEL - IE Josefa Campos, Bello</p>
+    <p><strong>Autor:</strong> Jorge Armando Jaramillo Bravo</p>
+    <p class="creditos-universidades">
+        Lic. Matemáticas y Física (UdeA) | Magister en Enseñanza (UNAL) | Doctorando en Educación (UTEL)
+    </p>
+    <p>Colaboradores: Didier Durango, Carmelo Hernández | Institución Educativa Josefa Campos, Bello</p>
 </footer>
 
 </body>
