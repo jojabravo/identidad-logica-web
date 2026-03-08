@@ -3,108 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Módulo de Pensamiento Lógico | Identidad Lógica</title>
+    <title>Lógica 6º/7º | Laboratorio Josefa Campos</title>
     <style>
         :root {
-            --verde-laboratorio: #1b5e20;
-            --azul-modulo: #0277bd;
-            --fondo-claro: #fafafa;
-            --borde-tarjeta: #e0e0e0;
+            --purpura: #9c27b0;
+            --purpura-suave: #f3e5f5;
+            --gris-texto: #5f6368;
+            --blanco: #ffffff;
+            --borde: #f1f3f4;
         }
 
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: var(--fondo-claro);
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--blanco);
             margin: 0;
-            line-height: 1.6;
+            color: var(--gris-texto);
         }
 
-        /* Encabezado Estilo Módulo */
-        header {
-            background-color: var(--verde-laboratorio);
-            color: white;
-            padding: 30px 15px;
-            text-align: center;
-            border-bottom: 5px solid var(--dorado);
-        }
-
-        .contenedor-principal {
-            max-width: 1000px;
-            margin: 20px auto;
-            background: white;
-            border: 1px solid var(--borde-tarjeta);
-            border-radius: 8px;
-            padding: 25px;
-        }
-
-        /* Estilo de Botones del Mapa Interactivo */
-        .mapa-navegacion {
+        /* Navbar Estilo image_bacbe1.png */
+        .navbar {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 40px;
+            border-bottom: 1px solid var(--borde);
         }
 
-        .item-nivel {
-            background: white;
-            border: 2px solid var(--azul-modulo);
-            padding: 15px 25px;
-            border-radius: 50px;
-            color: var(--azul-modulo);
+        .perfil-estudiante {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icono-home {
+            background-color: var(--purpura-suave);
+            color: var(--purpura);
+            padding: 8px 12px;
+            border-radius: 10px;
             font-weight: bold;
-            text-decoration: none;
-            transition: 0.3s;
         }
 
-        .item-nivel:hover {
-            background: var(--azul-modulo);
+        .nav-buttons { display: flex; gap: 10px; }
+        .btn-nav {
+            padding: 6px 15px;
+            border-radius: 20px;
+            border: none;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .btn-buzon { background: #e8eaf6; color: #3f51b5; }
+        .btn-salir { background: #ffebee; color: #f44336; }
+        .btn-notas { background: var(--purpura-suave); color: var(--purpura); }
+
+        /* Banner Avisos */
+        .contenedor { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+        .banner-avisos {
+            background-color: #fff9c4;
+            padding: 15px 25px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        /* Tarjetas de Unidad Estilo image_bacbe1.png */
+        .grid-unidades {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+
+        .tarjeta-unidad {
+            border: 1px solid #e8eaed;
+            border-radius: 25px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .tarjeta-unidad:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+
+        .circulo-icono {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
             color: white;
         }
 
-        /* Footer con Créditos Específicos */
-        footer {
-            background: #263238;
-            color: #eceff1;
-            padding: 30px;
+        /* Créditos Estilo image_bacba3.png */
+        .footer-creditos {
+            margin-top: 80px;
+            padding: 40px;
             text-align: center;
-            margin-top: 50px;
+            border-top: 1px solid var(--borde);
         }
 
-        .copyright {
+        .nombre-autor {
+            color: var(--purpura);
+            font-size: 1.5rem;
             font-weight: bold;
-            color: #81c784;
-            margin-top: 15px;
+            margin-bottom: 15px;
         }
+
+        .titulos-academicos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.9rem;
+            color: #70757a;
+            margin-bottom: 30px;
+        }
+
+        .titulo-item { display: flex; align-items: center; gap: 8px; }
+        .icon-acad { font-size: 1.1rem; }
+
+        .logo-lab { font-size: 0.8rem; color: #9aa0a6; letter-spacing: 1px; margin-top: 20px; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Módulo de Pensamiento Lógico</h1>
-    <h3>Identidad Lógica: El Poder de ser Yo</h3>
-</header>
+<nav class="navbar">
+    <div class="perfil-estudiante">
+        <div class="icono-home">🏠</div>
+        <div>
+            <div style="font-weight: bold; color: var(--purpura);">Lógica 6º/7º</div>
+            <div style="font-size: 10px; color: #9aa0a6; text-transform: uppercase;">Estudiante: Profesor Jorge Jaramillo Bravo</div>
+        </div>
+    </div>
+    <div class="nav-buttons">
+        <button class="btn-nav btn-buzon">✉ BUZÓN</button>
+        <button class="btn-nav btn-salir">➡ SALIR</button>
+        <button class="btn-nav btn-notas">📝 MIS NOTAS</button>
+    </div>
+</nav>
 
-<div class="contenedor-principal">
-    <section id="bienvenida">
-        <h2>Bienvenido al Laboratorio Interactivo</h2>
-        <p>Selecciona una unidad temática en el mapa para iniciar tu proceso de aprendizaje:</p>
-        
-        <nav class="mapa-navegacion">
-            <a href="#" class="item-nivel">U0. La Casa</a>
-            <a href="#" class="item-nivel">U1. Supermercado</a>
-            <a href="#" class="item-nivel">U2. El Edificio</a>
-            <a href="#" class="item-nivel">U3. La Panadería</a>
-            <a href="#" class="item-nivel">U4. Tienda de Moda</a>
-        </nav>
-    </section>
+<div class="contenedor">
+    <div class="banner-avisos">
+        <span style="font-size: 20px;">📢</span>
+        <div>
+            <div style="font-weight: bold; font-size: 14px;">Avisos del Profe Jorge</div>
+            <div style="font-size: 10px; color: #5f6368;">COMUNICADOS OFICIALES PARA TU GRADO</div>
+        </div>
+    </div>
+
+    <h1 style="color: #202124; font-size: 28px; margin-bottom: 5px;">Unidades de Aprendizaje</h1>
+    <p style="font-size: 14px; margin-bottom: 30px;">Selecciona la unidad para continuar tu formación</p>
+
+    <div class="grid-unidades">
+        <div class="tarjeta-unidad">
+            <div class="circulo-icono" style="background: var(--purpura);">A</div>
+            <div>
+                <div style="font-weight: bold; font-size: 14px; text-transform: uppercase;">Capítulo 1: Pensamiento Verbal</div>
+                <div style="font-size: 12px; color: #70757a; margin: 5px 0;">Ordenamiento de la información, lógica verbal y deducción.</div>
+                <div style="color: var(--purpura); font-weight: bold; font-size: 11px;">EXPLORAR MÓDULOS →</div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<footer>
-    <p><strong>Créditos Académicos:</strong></p>
-    <p>Lic. Matemáticas y Física (UdeA) | Magister (UNAL) | Doctorando (UTEL)</p>
-    <p>Colaboradores: Didier Garcia y Didier Durango | IE Josefa Campos</p>
-    <p class="copyright">© 2026 - LABORATORIO INTERACTIVO JOSEFA CAMPOS</p>
+<footer class="footer-creditos">
+    <div class="nombre-autor">Jorge Armando Jaramillo Bravo</div>
+    
+    <div class="titulos-academicos">
+        <div class="titulo-item"><span class="icon-acad">⚛️</span> Licenciado en matemáticas y física (UdeA)</div>
+        <div class="titulo-item"><span class="icon-acad">♉</span> Magister en enseñanza de las ciencias exactas y naturales (UNAL)</div>
+        <div class="titulo-item"><span class="icon-acad">🎓</span> Doctorante en Educación (UTEL)</div>
+    </div>
+
+    <div style="font-size: 0.85rem; color: #5f6368;">
+        <strong>Colaboradores:</strong> Didier Garcia y Didier Durango | IE Josefa Campos
+    </div>
+
+    <div class="logo-lab">
+        © 2026 - LABORATORIO INTERACTIVO JOSEFA CAMPOS
+    </div>
 </footer>
 
 </body>
