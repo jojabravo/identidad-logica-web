@@ -1,52 +1,45 @@
 :root {
     --purpura: #9c27b0;
-    --purpura-hover: #7b1fa2;
-    --purpura-suave: #f3e5f5;
-    --amarillo-monedas: #fff9c4;
-    --texto-estudiante: #9aa0a6;
+    --purpura-claro: #f3e5f5;
+    --gris-suave: #f1f3f4;
+    --texto: #5f6368;
 }
 
-body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #ffffff; color: #3c4043; }
+body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin: 0; background-color: #ffffff; color: var(--texto); }
 
-/* Navbar Superior Unificada */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 40px;
-    border-bottom: 1px solid #eee;
-    background: white;
-}
+/* Login Moderno (Corrigiendo image_b96ae2.png) */
+#pantalla-login { height: 100vh; display: flex; justify-content: center; align-items: center; background: var(--purpura-claro); }
+.caja-login { background: white; padding: 50px; border-radius: 40px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 400px; }
+.logo-login { font-size: 50px; margin-bottom: 20px; background: var(--purpura-claro); display: inline-block; padding: 20px; border-radius: 20px; }
+.input-moderno { width: 100%; padding: 15px; margin: 20px 0; border-radius: 12px; border: 1px solid #ddd; font-size: 1rem; box-sizing: border-box; }
+.btn-primario { width: 100%; padding: 15px; background: var(--purpura); color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; }
 
+/* Navbar Superior (image_ba533f.png) */
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 40px; border-bottom: 1px solid #eee; background: white; }
 .perfil-nav { display: flex; align-items: center; gap: 12px; }
-.casa-icon { background: var(--purpura-suave); padding: 8px; border-radius: 12px; font-size: 20px; }
-.user-info { display: flex; flex-direction: column; }
-.game-title { font-weight: bold; color: var(--purpura); font-size: 1.1rem; }
-.student-name { font-size: 10px; color: var(--texto-estudiante); text-transform: uppercase; }
+.casa-icon { background: var(--purpura-claro); color: var(--purpura); padding: 8px; border-radius: 10px; }
+.game-title { font-weight: bold; color: var(--purpura); display: block; }
+.student-name { font-size: 10px; color: #9aa0a6; text-transform: uppercase; }
 
-/* Gamificación Central */
-.gamificacion { display: flex; align-items: center; gap: 15px; }
-.label-progreso { font-size: 12px; font-weight: bold; color: #5f6368; }
-.contenedor-progreso { width: 150px; height: 12px; background: #eee; border-radius: 20px; border: 1px solid #ddd; overflow: hidden; }
-.barra-relleno { height: 100%; width: 0%; background: var(--purpura); transition: 0.6s ease-in-out; }
-.monedas-display { background: var(--amarillo-monedas); padding: 6px 15px; border-radius: 20px; font-weight: bold; border: 1px solid #fbc02d; color: #f57f17; font-size: 14px; }
+/* Gamificación (Barra estilo image_ba6a48.png) */
+.gamificacion { display: flex; align-items: center; gap: 10px; }
+.contenedor-progreso { width: 140px; height: 12px; background: var(--gris-suave); border-radius: 20px; border: 1px solid #ddd; overflow: hidden; }
+.barra-relleno { height: 100%; width: 0%; background: var(--purpura); transition: 0.6s ease; }
+.monedas-display { background: #fff9c4; padding: 6px 15px; border-radius: 20px; color: #f57f17; font-weight: bold; border: 1px solid #fbc02d; font-size: 13px; }
 
-/* Botones Navegación */
-.btn-nav { padding: 8px 18px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 11px; }
-.btn-buzon { background: var(--purpura); color: white; }
-.btn-salir { background: var(--purpura); color: white; margin-left: 10px; }
+/* Botones Nav */
+.btn-nav { padding: 8px 16px; border-radius: 20px; border: none; font-size: 11px; font-weight: bold; cursor: pointer; margin-left: 5px; }
+.btn-buzon { background: #e8eaf6; color: #3f51b5; }
+.btn-notas { background: var(--purpura-claro); color: var(--purpura); }
+.btn-salir { background: #ffebee; color: #f44336; }
 
-/* Mapa del Barrio */
-.mapa-container { position: relative; max-width: 950px; margin: 30px auto; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 25px rgba(0,0,0,0.05); }
+/* Mapa */
+.contenedor-mapa { position: relative; max-width: 900px; margin: 40px auto; border-radius: 30px; border: 6px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
 .img-mapa { width: 100%; display: block; }
-.punto-nivel { position: absolute; width: 40px; height: 40px; background: var(--purpura); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+.punto-nivel { position: absolute; width: 40px; height: 40px; background: var(--purpura); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; border: 3px solid white; }
 
-/* Créditos */
-footer { text-align: center; padding: 40px; border-top: 1px solid #eee; margin-top: 40px; }
-.autor { color: var(--purpura); font-size: 1.4rem; font-weight: bold; }
-.titulos { font-size: 0.9rem; color: #70757a; margin: 10px 0; }
-.copy-lab { font-weight: bold; color: #81c784; font-size: 0.8rem; margin-top: 15px; }
-
-/* Login */
-#pantalla-login { height: 100vh; display: flex; justify-content: center; align-items: center; background: var(--purpura-suave); }
-.caja-login { background: white; padding: 40px; border-radius: 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+/* Créditos (image_bacba3.png) */
+.creditos-finales { padding: 50px; text-align: center; border-top: 1px solid #eee; background: white; }
+.nombre-autor { color: var(--purpura); font-size: 1.6rem; font-weight: bold; margin-bottom: 15px; }
+.titulos-academicos { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; margin-bottom: 20px; color: #70757a; }
+.copyright-lab { font-weight: bold; color: #81c784; font-size: 0.8rem; margin-top: 20px; }
