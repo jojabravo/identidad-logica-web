@@ -7,107 +7,64 @@
 
 body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin: 0; background-color: #ffffff; color: var(--texto); }
 
-/* Login Moderno (Corrigiendo image_b96ae2.png) */
+/* --- LOGIN --- */
 #pantalla-login { height: 100vh; display: flex; justify-content: center; align-items: center; background: var(--purpura-claro); }
 .caja-login { background: white; padding: 50px; border-radius: 40px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 400px; }
 .logo-login { font-size: 50px; margin-bottom: 20px; background: var(--purpura-claro); display: inline-block; padding: 20px; border-radius: 20px; }
 .input-moderno { width: 100%; padding: 15px; margin: 20px 0; border-radius: 12px; border: 1px solid #ddd; font-size: 1rem; box-sizing: border-box; }
 .btn-primario { width: 100%; padding: 15px; background: var(--purpura); color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; }
 
-/* Navbar Superior (image_ba533f.png) */
+/* --- NAVBAR --- */
 .navbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 40px; border-bottom: 1px solid #eee; background: white; }
 .perfil-nav { display: flex; align-items: center; gap: 12px; }
 .casa-icon { background: var(--purpura-claro); color: var(--purpura); padding: 8px; border-radius: 10px; }
 .game-title { font-weight: bold; color: var(--purpura); display: block; }
 .student-name { font-size: 10px; color: #9aa0a6; text-transform: uppercase; }
 
-/* Gamificación (Barra estilo image_ba6a48.png) */
+/* --- GAMIFICACIÓN --- */
 .gamificacion { display: flex; align-items: center; gap: 10px; }
 .contenedor-progreso { width: 140px; height: 12px; background: var(--gris-suave); border-radius: 20px; border: 1px solid #ddd; overflow: hidden; }
 .barra-relleno { height: 100%; width: 0%; background: var(--purpura); transition: 0.6s ease; }
 .monedas-display { background: #fff9c4; padding: 6px 15px; border-radius: 20px; color: #f57f17; font-weight: bold; border: 1px solid #fbc02d; font-size: 13px; }
 
-/* Botones Nav */
+/* --- BOTONES NAV --- */
 .btn-nav { padding: 8px 16px; border-radius: 20px; border: none; font-size: 11px; font-weight: bold; cursor: pointer; margin-left: 5px; }
 .btn-buzon { background: #e8eaf6; color: #3f51b5; }
 .btn-notas { background: var(--purpura-claro); color: var(--purpura); }
 .btn-salir { background: #ffebee; color: #f44336; }
 
-/* Asegura que el contenedor sea la referencia espacial */
-.contenedor-mapa { 
-    position: relative; 
-    max-width: 900px; 
-    margin: 40px auto; 
-    border-radius: 30px; 
-    border: 6px solid white; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-    overflow: hidden; 
-}
+/* --- MAPA --- */
+.contenedor-mapa { position: relative; max-width: 900px; margin: 40px auto; border-radius: 30px; border: 6px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+.img-mapa { width: 100%; display: block; z-index: 1; }
 
-.img-mapa { 
-    width: 100%; 
-    display: block; 
-    z-index: 1; /* Imagen al fondo */
-}
-
-/* Punto de nivel con animación para que resalte */
 .punto-nivel { 
-    position: absolute; 
-    z-index: 10; /* Siempre al frente de la imagen */
-    width: 45px; 
-    height: 45px; 
-    background: var(--purpura); 
-    color: white; 
-    border-radius: 50%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-weight: bold; 
-    cursor: pointer; 
-    border: 3px solid white; 
-    box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
-    transition: all 0.3s ease;
-    animation: pulso-puntos 2s infinite; /* Animación de pulso */
+    position: absolute; z-index: 10; width: 45px; height: 45px; background: var(--purpura); color: white; border-radius: 50%; 
+    display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; border: 3px solid white; 
+    box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4); transition: all 0.3s ease; animation: pulso-puntos 2s infinite; 
 }
+.punto-nivel:hover { transform: scale(1.15); background: #7b1fa2; }
 
-.punto-nivel:hover {
-    transform: scale(1.15);
-    background: #7b1fa2;
-}
-
-/* Animación para que los pines "brillen" */
 @keyframes pulso-puntos {
     0% { box-shadow: 0 0 0 0 rgba(156, 39, 176, 0.7); }
     70% { box-shadow: 0 0 0 10px rgba(156, 39, 176, 0); }
     100% { box-shadow: 0 0 0 0 rgba(156, 39, 176, 0); }
 }
 
-/* Créditos (image_bacba3.png) */
-.creditos-finales { padding: 50px; text-align: center; border-top: 1px solid #eee; background: white; }
-.nombre-autor { color: var(--purpura); font-size: 1.6rem; font-weight: bold; margin-bottom: 15px; }
-.titulos-academicos { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; margin-bottom: 20px; color: #70757a; }
-.copyright-lab { font-weight: bold; color: #81c784; font-size: 0.8rem; margin-top: 20px; }
-/* Estilos para la ventana modal */
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
-    z-index: 1000;
-}
+/* --- COORDENADAS PINES --- */
+.pin-0 { top: 47%; left: 47.4%; }  
+.pin-1 { top: 1%; left: 72.1%; } 
+.pin-2 { top: 42%; left: 89%; } 
+.pin-3 { top: 77%; left: 4.2%; } 
+.pin-4 { top: 39.1%; left: 57.6%; }
+
+/* --- VENTANA MODAL (RETOS) --- */
+.overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; }
 
 .modal-tarjeta {
-    display: none;
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    width: 90%;
-    max-width: 800px;
-    border-radius: 30px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-    z-index: 1001;
-    overflow: hidden;
+    display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: white; width: 95%; max-width: 800px; border-radius: 30px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3); z-index: 1001; 
+    overflow-y: auto; max-height: 90vh; /* Permite scroll si el contenido es largo */
     animation: aparecer 0.3s ease-out;
 }
 
@@ -116,111 +73,24 @@ body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin: 0; background
     to { opacity: 1; transform: translate(-50%, -50%); }
 }
 
-.modal-header {
-    background: var(--purpura);
-    color: white;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.modal-header { 
+    background: var(--purpura); color: white; padding: 20px; 
+    display: flex; justify-content: space-between; align-items: center;
+    position: sticky; top: 0; z-index: 10; /* La X se queda fija arriba */
 }
 
-.modal-cuerpo { padding: 30px; display: flex; flex-direction: column; gap: 20px; }
+.modal-cuerpo { padding: 25px; display: flex; flex-direction: column; gap: 20px; }
 
-.escenario-visual img {
-    width: 100%;
-    border-radius: 20px;
-    border: 1px solid #eee;
-}
+.escenario-visual img { width: 100%; border-radius: 20px; border: 1px solid #eee; }
 
 .burbuja-tutor {
-    background: var(--purpura-claro);
-    padding: 20px;
-    border-radius: 20px;
-    border-left: 6px solid var(--purpura);
-    text-align: left;
+    background: var(--purpura-claro); padding: 20px; border-radius: 20px;
+    border-left: 6px solid var(--purpura); text-align: left;
 }
 
-.input-grupo {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-}
-/* AJUSTES PARA CELULAR (Pantallas de menos de 600px) */
-@media (max-width: 600px) {
-    /* 1. Navbar en columna para que nada se amontone */
-    .navbar {
-        flex-direction: column;
-        padding: 15px;
-        gap: 15px;
-    }
-
-    /* 2. El progreso y monedas ocuparán todo el ancho */
-    .gamificacion {
-        width: 100%;
-        justify-content: space-around;
-        order: 2; /* Lo ponemos debajo del nombre */
-    }
-
-    .contenedor-progreso {
-        width: 100px; /* Un poco más pequeño para que quepa todo */
-    }
-
-    /* 3. Los botones de acción (Buzón, Salir) en una fila dedicada */
-    .nav-buttons {
-        width: 100%;
-        justify-content: center;
-        order: 3;
-    }
-
-    /* 4. Ajustar el mapa para que no se vea gigante */
-    .contenedor-mapa {
-        margin: 15px auto;
-        border-width: 3px;
-    }
-
-    /* 5. Créditos académicos en columna para mejor lectura */
-    .titulos-academicos {
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-    }
-}
-/* Coordenadas corregidas y afinadas para tu mapa */
-
-/* 0. La Casa (Hogar) - Un poco más a la izquierda y abajo */
-.pin-0 { top: 47%; left: 47.4%; }  
-
-/* 1. El Supermercado - Justo sobre la entrada */
-.pin-1 { top: 1%; left: 72.1%; } 
-
-/* 2. El Edificio - Bien a la derecha, sobre el tejado */
-.pin-2 { top: 42%; left: 89%; } 
-
-/* 3. La Panadería - En la esquina inferior izquierda */
-.pin-3 { top: 77%; left: 4.2%; } 
-
-/* 4. La Tienda de Moda (Boutique) - En el centro-derecha */
-.pin-4 { top: 39.1%; left: 57.6%; }
-
-
-/* Slots del estante: donde aterrizarán los objetos */
-.drop-zone {
-    border: 2px dashed rgba(156, 39, 176, 0.2);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-/* Efecto cuando un objeto entra al slot */
-.drop-zone img {
-    max-width: 85%;
-    max-height: 85%;
-    object-fit: contain;
-    animation: bounceIn 0.5s ease;
-}
+/* --- MECÁNICA DE OBJETOS --- */
+.drop-zone { border: 2px dashed rgba(156, 39, 176, 0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+.drop-zone img { max-width: 85%; max-height: 85%; object-fit: contain; animation: bounceIn 0.5s ease; }
 
 @keyframes bounceIn {
     0% { transform: scale(0.3); opacity: 0; }
@@ -228,11 +98,24 @@ body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin: 0; background
     100% { transform: scale(1); opacity: 1; }
 }
 
-.obj-click {
-    cursor: pointer;
-    transition: transform 0.2s;
-}
+/* --- CRÉDITOS --- */
+.creditos-finales { padding: 50px; text-align: center; border-top: 1px solid #eee; background: white; }
+.nombre-autor { color: var(--purpura); font-size: 1.6rem; font-weight: bold; margin-bottom: 15px; }
+.titulos-academicos { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; font-size: 0.9rem; margin-bottom: 20px; color: #70757a; }
+.copyright-lab { font-weight: bold; color: #81c784; font-size: 0.8rem; margin-top: 20px; }
 
-.obj-click:hover {
-    transform: scale(1.1) rotate(5deg);
+/* --- AJUSTES CELULAR (< 600px) --- */
+@media (max-width: 600px) {
+    .navbar { flex-direction: column; padding: 15px; gap: 15px; }
+    .gamificacion { width: 100%; justify-content: space-around; order: 2; }
+    .contenedor-progreso { width: 100px; }
+    .nav-buttons { width: 100%; justify-content: center; order: 3; }
+    .contenedor-mapa { margin: 15px auto; border-width: 3px; }
+    
+    .modal-tarjeta { width: 98%; border-radius: 20px; }
+    .modal-cuerpo { padding: 15px; gap: 10px; }
+    .escenario-visual img { max-height: 180px; object-fit: contain; }
+    .burbuja-tutor { padding: 15px; font-size: 0.85rem; }
+    
+    .titulos-academicos { flex-direction: column; gap: 10px; align-items: center; }
 }
